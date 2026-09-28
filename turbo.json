@@ -3,6 +3,7 @@
   "tasks": {
     "build": { "dependsOn": ["^build"], "outputs": ["dist/**", ".next/**", "!.next/cache/**"] },
     "test": { "dependsOn": ["^build"] },
+    "@apa/db#test": { "dependsOn": ["^build"], "env": ["TEST_DATABASE_URL"], "cache": false },
     "typecheck": { "dependsOn": ["^build"] }
   }
 }

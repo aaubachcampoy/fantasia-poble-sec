@@ -85,9 +85,9 @@ Tipos: `position = 'POR'|'DEF'|'MIG'|'DAV'`, dinero en `numeric(6,1)` (millones 
 
 1. **Banquillo:** 4 suplentes (1 POR, 1 DEF, 1 MIG, 1 DAV). El resto de la plantilla queda en reserva.
 2. **Calendario (hora de Madrid):** mercado abierto de lunes 00:00 a viernes 23:59. Sábado y domingo cerrado. Alineaciones bloqueadas desde el sábado 09:00 hasta que reabre el mercado.
-3. **Reapertura:** el mercado solo reabre si la jornada anterior está cerrada. Si el lunes a las 00:00 el admin aún no la ha cerrado, abre en el momento en que la cierre.
+3. **Reapertura:** el mercado solo reabre si la jornada anterior está cerrada. Si el lunes a las 00:00 el admin aún no la ha cerrado, abre en el momento en que la cierre. Mientras no la cierre, las alineaciones siguen bloqueadas (también el sábado antes de las 09:00).
 4. **Cobro:** automático al cerrar la jornada (0,1M por punto, capitán incluido, más 3M / 2M / 1M al podio de cada liga). En la app, la tarjeta de premios es solo informativa. Empate en el podio: se desempata por quien entró antes en la liga.
-5. **Precio al cerrar la jornada:** `nuevo = precio + (puntos − 5) × 0,05 + demanda`, con `demanda = 0,3 × (proporción de ligas en que el jugador tiene propietario) − 0,1` (entre −0,1M y +0,2M). Se redondea a 0,1M y nunca baja de `inicial − 1,0M`. Si no juega, suma 0 puntos. El precio es global.
+5. **Precio al cerrar la jornada:** `nuevo = precio + (puntos − 5) × 0,05 + demanda`, con `demanda = 0,3 × (proporción de ligas en que el jugador tiene propietario, redondeada a 2 decimales) − 0,1` (entre −0,1M y +0,2M). Se redondea a 0,1M y nunca baja de `inicial − 1,0M`. Si no juega, suma 0 puntos. El precio es global.
 6. **Mercado y navegación como en el prototipo:** pestañas Lliures / Pujes / Ofertes; intercambios en MÉS; navegación EQUIP · MERCAT · JORNADA · LLIGA · MÉS · NORMES.
 7. **Resolución de pujas:** por jugador gana la más alta y, en empate, la más antigua. Si el ganador ya no cumple saldo o límites, pasa a la siguiente puja. Se resuelven de mayor a menor importe para que el saldo reservado sea coherente.
 8. **Importar CSV:** columnas `nom, equip, posicio, dorsal` (`equip` = nombre corto, p. ej. `S12 A`). Si hay filas con error, no se importa ninguna.
@@ -97,6 +97,26 @@ Tipos: `position = 'POR'|'DEF'|'MIG'|'DAV'`, dinero en `numeric(6,1)` (millones 
 ## 5. Plan
 
 - [x] Fase 2: `packages/core` (fórmula, reglas, mercado, precios, reparto, PRNG) con tests.
-- [ ] Fase 3: migraciones SQL, RLS, cron y seed.
+- [x] Fase 3: migraciones SQL, RLS, cron y seed.
 - [ ] Fase 4: admin.
 - [ ] Fase 5: app de jugadores.
+
+## 6. Decisiones de la fase 3
+
+- **Borradores invisibles:** el acta en borrador (`match_sheets`, `player_stats`) solo la ve el admin. Al publicar se copia a `player_points` y a `fixtures.goals_*`, que es lo que ven las ligas. Si se corrige un partido ya publicado, los mánagers siguen viendo la versión anterior hasta que se vuelve a publicar.
+- **Alineación congelada:** el sábado a las 09:00 se guarda una foto de cada alineación (`lineup_snapshots`) y la puntuación sale de esa foto. Quien entra en una liga después del bloqueo no puntúa esa jornada.
+- **Resultados solo con la jornada empezada:** el admin no puede publicar resultados antes del bloqueo del sábado. Una vez cerrada la jornada, los resultados quedan bloqueados.
+- **Baja de un jugador:** el mánager que lo tenía cobra su precio actual. Se anulan las pujas, ofertas e intercambios en los que aparece.
+- **Cambio de posición de un jugador:** sale de su hueco en la alineación y se recoloca según la nueva posición.
+- **Ofertas e intercambios:** el dinero no se reserva al hacer la propuesta. Se comprueba el saldo al aceptarla. Solo reservan dinero las pujas.
+- **Pujas:** modificar una puja conserva su antigüedad para el desempate. Se puede modificar aunque el jugador ya no salga en el mercado de ese día.
+- **Mercado diario:** los 16 jugadores libres son los mismos para todos los mánagers de una liga y distintos entre ligas.
+- **Hora de Madrid:** todas las fechas se calculan en hora de Madrid, con el cambio de hora incluido. `private.tick()` es idempotente: si el cron se salta una ejecución, la siguiente hace lo pendiente.
+
+## 7. Pendiente de decidir: capacidad de las ligas
+
+Con 13 jugadores por equipo (4 DEF y 4 MIG), una liga admite **como máximo unos 16 mánagers**: cada reparto se lleva 5 DEF y 5 MIG de 80. Los tamaños 20 / 30 / 50 del diseño no se pueden llenar; el mánager que ya no cabe recibe «No queden prou jugadors lliures en aquesta lliga». Opciones:
+
+1. Limitar el tamaño a lo que permita la plantilla real del club. Cada mánager necesita 2 POR, 5 DEF, 5 MIG y 3 DAV, así que el máximo lo marca la posición con menos jugadores en el club.
+2. Repartir menos jugadores cuando la liga es grande.
+3. Permitir que un mismo jugador esté en varios equipos de una liga (cambia la regla «un propietario por liga»).
