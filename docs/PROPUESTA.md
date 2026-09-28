@@ -81,21 +81,22 @@ Tipos: `position = 'POR'|'DEF'|'MIG'|'DAV'`, dinero en `numeric(6,1)` (millones 
 - `bids`: cada uno ve solo las suyas.
 - Fotos: bucket privado con URLs firmadas (son menores).
 
-## 4. Discrepancias entre README y prototipos
+## 4. Decisiones (aprobadas: «4 suplentes, haz caso al prototipo y decide tú»)
 
-En estos puntos el README y el prototipo dicen cosas distintas, o falta algún dato. Necesito una decisión antes de fijarlos en `core`:
+1. **Banquillo:** 4 suplentes (1 POR, 1 DEF, 1 MIG, 1 DAV). El resto de la plantilla queda en reserva.
+2. **Calendario (hora de Madrid):** mercado abierto de lunes 00:00 a viernes 23:59. Sábado y domingo cerrado. Alineaciones bloqueadas desde el sábado 09:00 hasta que reabre el mercado.
+3. **Reapertura:** el mercado solo reabre si la jornada anterior está cerrada. Si el lunes a las 00:00 el admin aún no la ha cerrado, abre en el momento en que la cierre.
+4. **Cobro:** automático al cerrar la jornada (0,1M por punto, capitán incluido, más 3M / 2M / 1M al podio de cada liga). En la app, la tarjeta de premios es solo informativa. Empate en el podio: se desempata por quien entró antes en la liga.
+5. **Precio al cerrar la jornada:** `nuevo = precio + (puntos − 5) × 0,05 + demanda`, con `demanda = 0,3 × (proporción de ligas en que el jugador tiene propietario) − 0,1` (entre −0,1M y +0,2M). Se redondea a 0,1M y nunca baja de `inicial − 1,0M`. Si no juega, suma 0 puntos. El precio es global.
+6. **Mercado y navegación como en el prototipo:** pestañas Lliures / Pujes / Ofertes; intercambios en MÉS; navegación EQUIP · MERCAT · JORNADA · LLIGA · MÉS · NORMES.
+7. **Resolución de pujas:** por jugador gana la más alta y, en empate, la más antigua. Si el ganador ya no cumple saldo o límites, pasa a la siguiente puja. Se resuelven de mayor a menor importe para que el saldo reservado sea coherente.
+8. **Importar CSV:** columnas `nom, equip, posicio, dorsal` (`equip` = nombre corto, p. ej. `S12 A`). Si hay filas con error, no se importa ninguna.
+9. **Admins:** rol `admin` asignado con un script (`pnpm admin:grant <email>`). Nadie se lo puede dar desde la app.
+10. **Estados vacíos, de carga y de error:** siguen el estilo de los estados vacíos que ya existen en los prototipos. Los documento al hacer cada pantalla.
 
-1. **Banquillo.** El README dice banquillo de 11 (1 POR, 4 DEF, 4 MIG, 2 DAV). El prototipo y su reglamento dicen 4 suplentes (1 por posición) y el resto en reserva. Propongo 4 suplentes, como en el prototipo.
-2. **Calendario del mercado.** El README dice «abierto de lunes a sábado, cerrado el domingo». El prototipo dice que abre el lunes a las 00:00, cierra el viernes a las 23:59 y que la alineación se bloquea el sábado a las 09:00. Propongo lo del prototipo.
-3. **Reapertura.** ¿El mercado reabre el lunes a las 00:00 aunque el admin aún no haya cerrado la jornada, o espera al cierre?
-4. **Cobro de la jornada.** En el admin, al cerrar la jornada se paga automáticamente. En la app hay un botón «Cobrar». Propongo pago automático y que la tarjeta solo informe.
-5. **Precio tras la jornada.** El prototipo usa `precio + (puntos − 5) × 0,05`, con mínimo `inicial − 1,0M`. El reglamento añade «y cuántos mánagers lo quieren». ¿Añado un factor de demanda (p. ej. % de ligas donde tiene propietario o pujas)? El precio es global, no por liga.
-6. **Ofertas de compra.** Existen en el prototipo (pestaña «Ofertes») pero el README no las nombra. En el mercado, el README habla de la pestaña «intercanvis» y el prototipo tiene «Lliures / Pujes / Ofertes», con los intercambios en «Més». Propongo seguir el prototipo.
-7. **Navegación de la app.** El prototipo tiene 6 pestañas: EQUIP · MERCAT · JORNADA · LLIGA · MÉS · NORMES. El README solo nombra algunas. Propongo las 6 del prototipo.
-8. **Estados que faltan en el diseño**: carga, error de red, código de liga inválido, liga llena, mánager nuevo que entra a mitad de temporada. Los diseñaré en su momento.
-9. **Alta de jugadores:** «Importar llista» (CSV). ¿Qué columnas tiene la hoja real del club?
-10. **Admins:** ¿cómo se crean? Propongo marcar el rol a mano en Supabase o con un script de semilla con tu email.
+## 5. Plan
 
-## 5. Siguiente paso
-
-Con tu OK, empiezo por `packages/core`: fórmula de puntos, reglas de plantilla (18, 3 por equipo, 2/5/5/3 en el reparto), cláusula ×1,5, capitán ×2, precio y generador del seed. Todo con tests.
+- [x] Fase 2: `packages/core` (fórmula, reglas, mercado, precios, reparto, PRNG) con tests.
+- [ ] Fase 3: migraciones SQL, RLS, cron y seed.
+- [ ] Fase 4: admin.
+- [ ] Fase 5: app de jugadores.
