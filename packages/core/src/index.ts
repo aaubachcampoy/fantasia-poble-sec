@@ -12,3 +12,4 @@ export * from './scoring.js';
 export * from './squad.js';
 export * from './teams.js';
 export * from './types.js';
+export * from './seed.js';

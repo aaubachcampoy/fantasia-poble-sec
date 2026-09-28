@@ -14,7 +14,8 @@ export interface PriceInput {
 
 /** Preu en tancar la jornada: rendiment + demanda, arrodonit a 0,1M i mai per sota d'inicial − 1M. */
 export function nextPrice({ price, teamAge, points, ownedRatio }: PriceInput): number {
-  const ratio = Math.min(1, Math.max(0, ownedRatio));
+  // Proporció arrodonida a 2 decimals perquè el resultat sigui idèntic al de Postgres.
+  const ratio = Math.min(1, Math.max(0, Math.round(Number((ownedRatio * 100).toFixed(6))) / 100));
   const delta = (points - PRICE_PAR_POINTS) * PRICE_PER_POINT_OVER_PAR + DEMAND_WEIGHT * ratio - DEMAND_OFFSET;
   return Math.max(minPrice(teamAge), round1(price + delta));
 }

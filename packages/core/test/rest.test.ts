@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { basePrice, createRng, dealSquad, formatMoney, marketPhase, matchdayPayouts, minPrice, nextPrice, teamFormat, validateSquad, type PlayerRef, type Position } from '../src/index.js';
+import { basePrice, round1, createRng, dealSquad, formatMoney, marketPhase, matchdayPayouts, minPrice, nextPrice, teamFormat, validateSquad, type PlayerRef, type Position } from '../src/index.js';
 
 describe('money', () => {
   it('format del disseny', () => {
@@ -75,6 +75,12 @@ describe('marketPhase (hora de Madrid)', () => {
     expect(marketPhase(at('2026-10-02T21:59:00Z'), true).marketOpen).toBe(true);
     expect(marketPhase(at('2026-10-02T22:00:00Z'), true)).toEqual({ marketOpen: false, lineupLocked: false });
   });
+  it('dissabte abans de les 09:00, si l’admin no ha tancat la jornada anterior, tot segueix bloquejat', () => {
+    expect(marketPhase(at('2026-10-02T22:00:00Z'), false)).toEqual({ marketOpen: false, lineupLocked: true });
+  });
+  it('proporció de demanda arrodonida a 2 decimals', () => {
+    expect(nextPrice({ price: 5, teamAge: 10, points: 4, ownedRatio: 2 / 3 })).toBe(5.1);
+  });
   it('dissabte 09:00 bloqueja alineacions', () => {
     expect(marketPhase(at('2026-10-03T06:59:00Z'), true).lineupLocked).toBe(false);
     expect(marketPhase(at('2026-10-03T07:00:00Z'), true).lineupLocked).toBe(true);
@@ -111,4 +117,14 @@ describe('dealSquad', () => {
   });
 
   it('null si no n’hi ha prou', () => expect(dealSquad(all.filter((p) => p.position !== 'POR'), createRng(1), 3)).toBeNull());
+});
+
+describe('round1', () => {
+  it('meitats lluny del zero, sense errors de coma flotant', () => {
+    expect(round1(8.65)).toBe(8.7);
+    expect(round1(0.1 + 0.2)).toBe(0.3);
+    expect(round1(-0.05)).toBe(-0.1);
+    expect(round1(-0.04)).toBe(0);
+    expect(Object.is(round1(-0.04), -0)).toBe(false);
+  });
 });

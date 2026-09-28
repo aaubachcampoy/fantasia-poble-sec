@@ -1,6 +1,10 @@
-/** Arrodoneix a 0,1M (evita errors de coma flotant). */
+/**
+ * Arrodoneix a 0,1M, meitats lluny del zero (com `round(numeric, 1)` de Postgres).
+ * Primer es neteja l'error de coma flotant (8,65 × 10 = 86,49999…).
+ */
 export function round1(n: number): number {
-  return Math.round(n * 10 + Number.EPSILON * Math.sign(n)) / 10;
+  const x = Number((n * 10).toFixed(6));
+  return (Math.sign(x) * Math.round(Math.abs(x))) / 10 || 0;
 }
 
 /** Format del disseny: 6,0M · 12,5M · −1,0M. */
