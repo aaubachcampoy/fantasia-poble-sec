@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/as1-design-system-7406f1b0-b2da-4d6c-86a8-08a4c2150db1/colors_and_type.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="_ds/as1-design-system-7406f1b0-b2da-4d6c-86a8-08a4c2150db1/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+html:root{--as1-gold:#F2C314;--as1-gold-hi:#FFD83D;--as1-gold-lo:#C99E00;--as1-gold-soft:#F7DC6F}
+body{margin:0;background:#F1EDE6;font-family:Montserrat,system-ui,sans-serif;color:#0A0A0A}
+a{color:#C99E00;text-decoration:none}a:hover{color:#F2C314}
+input,select{outline:none;font-family:Montserrat,system-ui,sans-serif}
+</style>
+</helmet>
+<div style="display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh">
+
+  <aside style="background:#0A0A0A url(assets/bg-ink.png) top right / 900px no-repeat;color:#fff;display:flex;flex-direction:column;padding:24px 0;position:sticky;top:0;height:100vh;box-sizing:border-box">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 20px 26px">
+      <img src="assets/escut.png" alt="Escut CE Apa Poble Sec" style="width:44px;height:44px">
+      <div><div style="font:800 13px/1.1 var(--font-display);text-transform:uppercase">Fantasy APA</div><div style="font:600 9.5px var(--font-body);letter-spacing:.18em;color:var(--as1-gold);margin-top:4px">ADMINISTRACIÓ</div></div>
+    </div>
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+      <div onClick="{{ n.onClick }}" style="display:flex;align-items:center;justify-content:space-between;padding:13px 20px;cursor:pointer;border-left:3px solid {{ n.line }};background:{{ n.bg }};font:700 11px var(--font-body);letter-spacing:.14em;color:{{ n.color }}" style-hover="background:#131313">
+        <span>{{ n.label }}</span>
+        <sc-if value="{{ n.hasBadge }}"><span style="min-width:20px;height:18px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:var(--as1-gold);color:#0A0A0A;font:800 9.5px/18px var(--font-body);text-align:center">{{ n.badge }}</span></sc-if>
+      </div>
+    </sc-for>
+    <div style="flex:1"></div>
+    <div style="padding:0 20px;font:500 11px/1.6 var(--font-body);color:var(--ink-fg-3)">Temporada 2026-27<br>20 equips · {{ playerCount }} jugadors<br>Mercat: {{ marketLabel }}</div>
+  </aside>
+
+  <main style="padding:32px clamp(20px,3vw,44px) 60px;min-width:0">
+
+    <sc-if value="{{ sJornada }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between">
+        <div>
+          <div style="font:600 11px var(--font-body);letter-spacing:.18em;color:#C99E00">JORNADA DE LA SETMANA</div>
+          <div style="font:800 56px/0.95 var(--font-display);text-transform:uppercase;letter-spacing:-.01em;margin-top:10px">{{ jTitle }}</div>
+          <div style="font:500 14px var(--font-body);color:var(--paper-fg-2);margin-top:10px">{{ jDates }}</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ jChips }}" as="c" hint-placeholder-count="2">
+            <button onClick="{{ c.onClick }}" style="height:40px;padding:0 16px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:700 11px var(--font-body);letter-spacing:.1em;cursor:pointer">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ jHasFixtures }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+          <sc-for list="{{ jStats }}" as="s" hint-placeholder-count="4">
+            <div style="background:#FAF7F1;border:1px solid var(--paper-line);padding:16px 18px">
+              <div style="font:600 10px var(--font-body);letter-spacing:.16em;color:var(--paper-fg-3)">{{ s.k }}</div>
+              <div style="font:800 30px/1.1 var(--font-display);margin-top:8px;color:{{ s.color }}">{{ s.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:#FAF7F1;border:1px solid var(--paper-line);overflow-x:auto">
+          <div style="min-width:900px">
+            <div style="display:grid;grid-template-columns:minmax(140px,1.2fr) minmax(150px,1.4fr) 120px 120px 76px 104px 136px;gap:12px;padding:12px 18px;border-bottom:1px solid var(--paper-line-strong);font:600 10px var(--font-body);letter-spacing:.14em;color:var(--paper-fg-3)">
+              <span>EQUIP</span><span>RIVAL</span><span>CAMP</span><span>DIA</span><span>HORA</span><span>ESTAT</span><span></span>
+            </div>
+            <sc-for list="{{ fixtures }}" as="f" hint-placeholder-count="10">
+              <div style="display:grid;grid-template-columns:minmax(140px,1.2fr) minmax(150px,1.4fr) 120px 120px 76px 104px 136px;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--paper-line)">
+                <div><div style="font:800 12px var(--font-display);text-transform:uppercase">{{ f.team }}</div><div style="font:500 10.5px var(--font-body);color:var(--paper-fg-3);margin-top:2px">{{ f.format }}</div></div>
+                <input value="{{ f.rival }}" onChange="{{ f.onRival }}" placeholder="Nom del rival" style="height:36px;border:1px solid var(--paper-line-strong);background:#fff;padding:0 10px;font-size:13px;min-width:0">
+                <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--paper-line-strong)">
+                  <div onClick="{{ f.setHome }}" style="height:34px;display:flex;align-items:center;justify-content:center;font:700 10px var(--font-body);letter-spacing:.08em;cursor:pointer;background:{{ f.homeBg }};color:{{ f.homeColor }}">CASA</div>
+                  <div onClick="{{ f.setAway }}" style="height:34px;display:flex;align-items:center;justify-content:center;font:700 10px var(--font-body);letter-spacing:.08em;cursor:pointer;background:{{ f.awayBg }};color:{{ f.awayColor }}">FORA</div>
+                </div>
+                <select value="{{ f.day }}" onChange="{{ f.onDay }}" style="height:36px;border:1px solid var(--paper-line-strong);background:#fff;padding:0 8px;font-size:13px">
+                  <option value="Dissabte">Dissabte</option><option value="Diumenge">Diumenge</option>
+                </select>
+                <input value="{{ f.time }}" onChange="{{ f.onTime }}" placeholder="00:00" style="height:36px;border:1px solid var(--paper-line-strong);background:#fff;padding:0 10px;font-size:13px;min-width:0">
+                <span style="justify-self:start;padding:5px 10px;border-radius:999px;font:700 9.5px var(--font-body);letter-spacing:.1em;background:{{ f.stBg }};color:{{ f.stColor }}">{{ f.status }}</span>
+                <button onClick="{{ f.onOpen }}" style="height:36px;border:1px solid #0A0A0A;background:transparent;color:#0A0A0A;font:700 10.5px var(--font-body);letter-spacing:.06em;cursor:pointer" style-hover="background:#0A0A0A;color:#fff">{{ f.cta }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border:1px solid var(--paper-line-strong);padding:16px 18px;background:#FAF7F1">
+          <div style="font:500 13px/1.55 var(--font-body);color:var(--paper-fg-2);max-width:620px">Quan tots els partits estan publicats, tanca la jornada. Es recalculen els preus, cada mànager cobra 0,1M per punt (i 3M, 2M o 1M els tres primers de cada lliga), i el mercat torna a obrir dilluns a les 00:00 amb jugadors nous a l'atzar.</div>
+          <button onClick="{{ closeJornada }}" style="height:46px;padding:0 20px;border:0;background:{{ closeBg }};color:#0A0A0A;font:700 12px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ closeLabel }}</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ jEmpty }}">
+        <div style="border:1px dashed var(--paper-line-strong);padding:48px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;background:#FAF7F1">
+          <div style="font:800 22px var(--font-display);text-transform:uppercase">Encara no hi ha partits</div>
+          <div style="font:500 14px/1.6 var(--font-body);color:var(--paper-fg-2);max-width:520px">Crea els 20 partits de la jornada amb els equips del club i omple el rival, el camp, el dia i l'hora de cadascun.</div>
+          <button onClick="{{ createJ6 }}" style="height:46px;padding:0 20px;border:0;background:var(--as1-gold);color:#0A0A0A;font:700 12px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Crear els 20 partits →</button>
+        </div>
+      </sc-if>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ sResultats }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div>
+        <div style="font:600 11px var(--font-body);letter-spacing:.18em;color:#C99E00">JORNADA 5 · RESULTATS I PUNTUACIONS</div>
+        <div style="font:800 40px/1 var(--font-display);text-transform:uppercase;margin-top:10px">Entrar resultats</div>
+      </div>
+      <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start">
+        <div style="background:#FAF7F1;border:1px solid var(--paper-line);max-height:calc(100vh - 200px);overflow:auto;position:sticky;top:20px">
+          <sc-for list="{{ matchList }}" as="m" hint-placeholder-count="10">
+            <div onClick="{{ m.onClick }}" style="padding:11px 14px;border-bottom:1px solid var(--paper-line);border-left:3px solid {{ m.line }};background:{{ m.bg }};cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center" style-hover="background:#fff">
+              <div style="min-width:0"><div style="font:800 11px var(--font-display);text-transform:uppercase">{{ m.team }}</div><div style="font:500 10.5px var(--font-body);color:var(--paper-fg-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ m.vs }}</div></div>
+              <span style="flex:none;width:8px;height:8px;border-radius:999px;background:{{ m.dot }}"></span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+          <div style="background:#0A0A0A url(assets/bg-ink.png) top right / cover no-repeat;color:#fff;padding:22px 24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--as1-gold)">{{ mInfo }}</div>
+              <div style="font:800 24px/1.1 var(--font-display);text-transform:uppercase;margin-top:8px">{{ mTitle }}</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3)">APA</div>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <button onClick="{{ gfDec }}" style="width:30px;height:30px;border:1px solid var(--ink-line-strong);background:transparent;color:#fff;cursor:pointer">−</button>
+                  <div style="font:800 40px/1 var(--font-display);min-width:38px;text-align:center">{{ gf }}</div>
+                  <button onClick="{{ gfInc }}" style="width:30px;height:30px;border:1px solid var(--ink-line-strong);background:transparent;color:#fff;cursor:pointer">+</button>
+                </div>
+              </div>
+              <div style="font:800 24px var(--font-display);color:var(--ink-fg-3)">–</div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3)">RIVAL</div>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <button onClick="{{ gaDec }}" style="width:30px;height:30px;border:1px solid var(--ink-line-strong);background:transparent;color:#fff;cursor:pointer">−</button>
+                  <div style="font:800 40px/1 var(--font-display);min-width:38px;text-align:center">{{ ga }}</div>
+                  <button onClick="{{ gaInc }}" style="width:30px;height:30px;border:1px solid var(--ink-line-strong);background:transparent;color:#fff;cursor:pointer">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ goalMismatch }}"><div style="border:1px solid var(--danger);color:var(--danger);padding:10px 14px;font:600 12.5px var(--font-body);background:#FAF7F1">{{ goalMsg }}</div></sc-if>
+
+          <div style="background:#FAF7F1;border:1px solid var(--paper-line);overflow-x:auto">
+            <div style="min-width:900px">
+              <div style="display:grid;grid-template-columns:minmax(190px,1fr) 50px 190px 104px 104px 64px 64px 150px 60px;gap:10px;padding:12px 16px;border-bottom:1px solid var(--paper-line-strong);font:600 9.5px var(--font-body);letter-spacing:.12em;color:var(--paper-fg-3);align-items:center">
+                <span>JUGADOR</span><span>POS</span><span>MINUTS</span><span>GOLS</span><span>ASSIST.</span><span>GROGA</span><span>VERM.</span><span>ENTRENADOR</span><span style="text-align:right">PUNTS</span>
+              </div>
+              <sc-for list="{{ statRows }}" as="p" hint-placeholder-count="13">
+                <div style="display:grid;grid-template-columns:minmax(190px,1fr) 50px 190px 104px 104px 64px 64px 150px 60px;gap:10px;padding:8px 16px;border-bottom:1px solid var(--paper-line);align-items:center;opacity:{{ p.op }}">
+                  <div style="display:flex;align-items:center;gap:10px;min-width:0">
+                    <div style="width:30px;height:30px;flex:none;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font:800 10px var(--font-display)">{{ p.initials }}</div>
+                    <div style="min-width:0"><div style="font:600 12.5px var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</div><div style="font:500 10px var(--font-body);color:var(--paper-fg-3)">Dorsal {{ p.num }}</div></div>
+                  </div>
+                  <span style="font:700 10.5px var(--font-body);letter-spacing:.06em;color:var(--paper-fg-2)">{{ p.pos }}</span>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--paper-line-strong)">
+                    <sc-for list="{{ p.minOpts }}" as="o"><div onClick="{{ o.onClick }}" style="height:30px;display:flex;align-items:center;justify-content:center;font:700 10px var(--font-body);cursor:pointer;background:{{ o.bg }};color:{{ o.color }}">{{ o.label }}</div></sc-for>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:6px"><button onClick="{{ p.gDec }}" style="width:28px;height:28px;border:1px solid var(--paper-line-strong);background:#fff;cursor:pointer">−</button><b style="width:22px;text-align:center;font:800 14px var(--font-display)">{{ p.g }}</b><button onClick="{{ p.gInc }}" style="width:28px;height:28px;border:1px solid var(--paper-line-strong);background:#fff;cursor:pointer">+</button></div>
+                  <div style="display:flex;align-items:center;gap:6px"><button onClick="{{ p.aDec }}" style="width:28px;height:28px;border:1px solid var(--paper-line-strong);background:#fff;cursor:pointer">−</button><b style="width:22px;text-align:center;font:800 14px var(--font-display)">{{ p.a }}</b><button onClick="{{ p.aInc }}" style="width:28px;height:28px;border:1px solid var(--paper-line-strong);background:#fff;cursor:pointer">+</button></div>
+                  <div onClick="{{ p.yToggle }}" style="width:30px;height:30px;border:1px solid var(--paper-line-strong);background:{{ p.yBg }};cursor:pointer;display:flex;align-items:center;justify-content:center;font:800 10px var(--font-body);color:#0A0A0A">{{ p.yMark }}</div>
+                  <div onClick="{{ p.rToggle }}" style="width:30px;height:30px;border:1px solid var(--paper-line-strong);background:{{ p.rBg }};cursor:pointer;display:flex;align-items:center;justify-content:center;font:800 10px var(--font-body);color:#fff">{{ p.rMark }}</div>
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--paper-line-strong)">
+                    <sc-for list="{{ p.coachOpts }}" as="o"><div onClick="{{ o.onClick }}" style="height:30px;display:flex;align-items:center;justify-content:center;font:700 11px var(--font-body);cursor:pointer;background:{{ o.bg }};color:{{ o.color }}">{{ o.label }}</div></sc-for>
+                  </div>
+                  <span style="text-align:right;font:800 18px var(--font-display);color:{{ p.ptsColor }}">{{ p.pts }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+            <div style="font:500 12.5px/1.55 var(--font-body);color:var(--paper-fg-2);max-width:560px">La porteria a zero, la victòria i l'empat es calculen a partir del resultat. Jugar més de mig partit val +2; menys, +1.</div>
+            <div style="display:flex;gap:10px">
+              <button onClick="{{ saveDraft }}" style="height:46px;padding:0 18px;border:1px solid #0A0A0A;background:transparent;color:#0A0A0A;font:700 11.5px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#0A0A0A;color:#fff">Desar esborrany</button>
+              <button onClick="{{ publish }}" style="height:46px;padding:0 20px;border:0;background:var(--as1-gold);color:#0A0A0A;font:700 11.5px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFD83D">{{ publishLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ sJugadors }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between">
+        <div>
+          <div style="font:600 11px var(--font-body);letter-spacing:.18em;color:#C99E00">PLANTILLES DEL CLUB</div>
+          <div style="font:800 40px/1 var(--font-display);text-transform:uppercase;margin-top:10px">Jugadors</div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button onClick="{{ importCsv }}" style="white-space:nowrap;height:44px;padding:0 16px;border:1px solid #0A0A0A;background:transparent;color:#0A0A0A;font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#0A0A0A;color:#fff">Importar llista</button>
+          <button onClick="{{ addPlayer }}" style="white-space:nowrap;height:44px;padding:0 18px;border:0;background:var(--as1-gold);color:#0A0A0A;font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFD83D">+ Afegir jugador</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <input value="{{ search }}" onChange="{{ onSearch }}" placeholder="Cerca per nom" style="height:40px;width:240px;max-width:100%;border:1px solid var(--paper-line-strong);background:#fff;padding:0 12px;font-size:13px">
+        <select value="{{ fTeam }}" onChange="{{ onFTeam }}" style="height:40px;border:1px solid var(--paper-line-strong);background:#fff;padding:0 10px;font-size:13px">
+          <option value="-1">Tots els equips</option>
+          <sc-for list="{{ teamOpts }}" as="t"><option value="{{ t.value }}">{{ t.label }}</option></sc-for>
+        </select>
+        <div style="display:flex;gap:6px">
+          <sc-for list="{{ posChips }}" as="c" hint-placeholder-count="5"><div onClick="{{ c.onClick }}" style="padding:8px 12px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:700 10px var(--font-body);letter-spacing:.08em;cursor:pointer">{{ c.label }}</div></sc-for>
+        </div>
+        <div style="font:500 12px var(--font-body);color:var(--paper-fg-3);flex:1 1 auto;text-align:right;white-space:nowrap">{{ countLabel }}</div>
+      </div>
+      <div style="background:#FAF7F1;border:1px solid var(--paper-line);overflow-x:auto">
+        <div style="min-width:760px">
+          <div style="display:grid;grid-template-columns:44px minmax(200px,1.6fr) minmax(130px,1fr) 60px 60px 80px 70px 90px;gap:12px;padding:12px 16px;border-bottom:1px solid var(--paper-line-strong);font:600 9.5px var(--font-body);letter-spacing:.12em;color:var(--paper-fg-3)">
+            <span></span><span>NOM</span><span>EQUIP</span><span>POS</span><span>DORSAL</span><span style="text-align:right">PREU</span><span style="text-align:right">PUNTS</span><span>FOTO</span>
+          </div>
+          <sc-for list="{{ playerRows }}" as="p" hint-placeholder-count="12">
+            <div onClick="{{ p.onClick }}" style="display:grid;grid-template-columns:44px minmax(200px,1.6fr) minmax(130px,1fr) 60px 60px 80px 70px 90px;gap:12px;padding:8px 16px;border-bottom:1px solid var(--paper-line);align-items:center;cursor:pointer;background:{{ p.bg }}" style-hover="background:#fff">
+              <div style="width:34px;height:34px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font:800 11px var(--font-display)">{{ p.initials }}</div>
+              <span style="font:600 13px var(--font-body)">{{ p.name }}</span>
+              <span style="font:500 12px var(--font-body);color:var(--paper-fg-2)">{{ p.team }}</span>
+              <span style="font:700 11px var(--font-body);letter-spacing:.06em">{{ p.pos }}</span>
+              <span style="font:500 12px var(--font-body);color:var(--paper-fg-2)">{{ p.num }}</span>
+              <span style="text-align:right;font:800 13px var(--font-display)">{{ p.price }}</span>
+              <span style="text-align:right;font:600 12px var(--font-body)">{{ p.pts }}</span>
+              <span style="font:700 9.5px var(--font-body);letter-spacing:.08em;color:var(--paper-fg-3)">{{ p.photo }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{ hasMore }}"><button onClick="{{ showMore }}" style="align-self:center;height:42px;padding:0 20px;border:1px solid #0A0A0A;background:transparent;font:700 11px var(--font-body);letter-spacing:.08em;cursor:pointer">MOSTRAR-NE MÉS</button></sc-if>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ sEquips }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div>
+        <div style="font:600 11px var(--font-body);letter-spacing:.18em;color:#C99E00">CE APA POBLE SEC</div>
+        <div style="font:800 40px/1 var(--font-display);text-transform:uppercase;margin-top:10px">20 equips</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px">
+        <sc-for list="{{ teamCards }}" as="t" hint-placeholder-count="8">
+          <div onClick="{{ t.onClick }}" style="background:#FAF7F1;border:1px solid var(--paper-line);padding:18px;display:flex;flex-direction:column;gap:12px;cursor:pointer" style-hover="background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.06)">
+            <div style="display:flex;justify-content:space-between;font:600 10px var(--font-body);letter-spacing:.16em;color:var(--paper-fg-3)"><span>{{ t.cat }}</span><span>{{ t.format }}</span></div>
+            <div style="font:800 17px/1.1 var(--font-display);text-transform:uppercase">{{ t.name }}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;border-top:1px solid var(--paper-line);padding-top:12px">
+              <div><div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--paper-fg-3)">JUGADORS</div><div style="font:800 18px var(--font-display);margin-top:3px">{{ t.count }}</div></div>
+              <div><div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--paper-fg-3)">PREU INICIAL</div><div style="font:800 18px var(--font-display);margin-top:3px;color:#C99E00">{{ t.base }}</div></div>
+            </div>
+            <div style="font:500 11.5px var(--font-body);color:var(--paper-fg-2)">{{ t.next }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+  </main>
+</div>
+
+<sc-if value="{{ hasEdit }}">
+<div onClick="{{ closeEdit }}" style="position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:10;display:flex;justify-content:flex-end">
+  <div onClick="{{ stop }}" style="width:420px;max-width:100%;height:100%;overflow:auto;background:#FAF7F1;border-left:2px solid var(--as1-gold);padding:26px 26px 40px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div style="font:600 10px var(--font-body);letter-spacing:.18em;color:#C99E00">{{ editEyebrow }}</div><div style="font:800 22px/1.1 var(--font-display);text-transform:uppercase;margin-top:8px">{{ editTitle }}</div></div>
+      <div onClick="{{ closeEdit }}" style="font:400 26px/1 var(--font-body);cursor:pointer;color:var(--paper-fg-3)">×</div>
+    </div>
+    <div style="display:flex;gap:16px;align-items:flex-end">
+      <image-slot id="{{ slotId }}" shape="rect" placeholder="Arrossega la foto" style="width:150px;height:188px;flex:none;background:#fff"></image-slot>
+      <div style="font:500 12px/1.55 var(--font-body);color:var(--paper-fg-2)">Retrat vertical, cara centrada. Arrossega un fitxer o fes clic per triar-lo. Doble clic per reenquadrar.</div>
+    </div>
+    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 10px var(--font-body);letter-spacing:.16em;color:var(--paper-fg-3)">NOM COMPLET</span><input value="{{ eName }}" onChange="{{ onEName }}" placeholder="Nom i cognoms" style="height:42px;border:1px solid {{ nameBorder }};background:#fff;padding:0 12px;font-size:14px"></label>
+    <sc-if value="{{ nameErr }}"><div style="font:600 11.5px var(--font-body);color:var(--danger);margin-top:-10px">Cal el nom complet.</div></sc-if>
+    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 10px var(--font-body);letter-spacing:.16em;color:var(--paper-fg-3)">EQUIP</span>
+      <select value="{{ eTeam }}" onChange="{{ onETeam }}" style="height:42px;border:1px solid var(--paper-line-strong);background:#fff;padding:0 10px;font-size:14px"><sc-for list="{{ teamOpts }}" as="t"><option value="{{ t.value }}">{{ t.label }}</option></sc-for></select>
+    </label>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 10px var(--font-body);letter-spacing:.16em;color:var(--paper-fg-3)">POSICIÓ</span>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--paper-line-strong)">
+        <sc-for list="{{ ePosOpts }}" as="o"><div onClick="{{ o.onClick }}" style="height:40px;display:flex;align-items:center;justify-content:center;font:700 11px var(--font-body);letter-spacing:.08em;cursor:pointer;background:{{ o.bg }};color:{{ o.color }}">{{ o.label }}</div></sc-for>
+      </div>
+    </div>
+    <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 10px var(--font-body);letter-spacing:.16em;color:var(--paper-fg-3)">DORSAL</span><input value="{{ eNum }}" onChange="{{ onENum }}" style="height:42px;width:100px;border:1px solid var(--paper-line-strong);background:#fff;padding:0 12px;font-size:14px"></label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--paper-line)">
+      <div style="padding:12px;border-right:1px solid var(--paper-line)"><div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--paper-fg-3)">PREU INICIAL</div><div style="font:800 20px var(--font-display);margin-top:4px">{{ eBase }}</div><div style="font:500 10.5px var(--font-body);color:var(--paper-fg-3);margin-top:2px">{{ eBaseNote }}</div></div>
+      <div style="padding:12px"><div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--paper-fg-3)">PREU ACTUAL</div><div style="font:800 20px var(--font-display);margin-top:4px;color:#C99E00">{{ ePrice }}</div><div style="font:500 10.5px var(--font-body);color:var(--paper-fg-3);margin-top:2px">Automàtic</div></div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button onClick="{{ removePlayer }}" style="height:46px;border:1px solid var(--danger);background:transparent;color:var(--danger);font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ removeLabel }}</button>
+      <button onClick="{{ savePlayer }}" style="height:46px;border:0;background:var(--as1-gold);color:#0A0A0A;font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Desar</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasToast }}">
+  <div style="position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:30;background:#0A0A0A;color:#fff;padding:13px 18px;font:600 13px var(--font-body);border-top:2px solid var(--as1-gold);box-shadow:0 10px 40px rgba(0,0,0,.18)">{{ toast }}</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(...a) {
+    super(...a);
+    const d = this.build(); this.D = d;
+    const stats = {}; const score = {}; const status = {};
+    d.teams.forEach(t => {
+      const done = t.day === 'Dissabte' || t.time < '13:00';
+      score[t.i] = done ? { ...t.res[4] } : { gf: 0, ga: 0 };
+      status[t.i] = done ? 'pub' : 'pend';
+      d.P.filter(p => p.team === t.i).forEach(p => { const b = p.bds[4]; stats[p.id] = done ? { m: b.min, g: b.g, a: b.a, y: b.y, r: 0, c: b.coach } : { m: 2, g: 0, a: 0, y: 0, r: 0, c: 1 }; });
+    });
+    const firstPend = d.teams.find(t => status[t.i] === 'pend');
+    this.state = { sec: 'jornada', jor: 5, fixtures: d.teams.map(t => ({ rival: t.rival, home: t.home, day: t.day, time: t.time })), j6: null, stats, score, status, selM: firstPend ? firstPend.i : 0, search: '', fTeam: -1, fPos: 'TOTS', limit: 40, edit: null, form: null, players: d.P.map(p => ({ id: p.id, name: p.name, team: p.team, pos: p.pos, num: p.num, price: p.price, pts: p.hist.reduce((x, y) => x + y, 0) })), toast: null, closed: false };
+  }
+  build() {
+    let s = 20260927;
+    const r = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+    const pick = a => a[Math.floor(r() * a.length)];
+    const T = [['Prebenjamí S8',8,'S8','Sant Andreu',1,'Dissabte','11:45'],['Benjamí S9 A',9,'S9 A','Barcino',0,'Dissabte','10:15'],['Benjamí S10 A',10,'S10 A','Sant Ignasi',1,'Dissabte','10:30'],['Aleví S11 A',11,'S11 A','Premier BCN',0,'Dissabte','10:30'],['Aleví S11 B',11,'S11 B','Parc',0,'Diumenge','17:00'],['Aleví S12 A',12,'S12 A','At. Hospitalense',0,'Diumenge','10:15'],['Aleví S12 B',12,'S12 B','At. Hospitalense',0,'Dissabte','12:15'],['Infantil S13 A',13,'S13 A','Barça',0,'Dissabte','16:00'],['Infantil S14 A',14,'S14 A','Fund. Hospitalet',0,'Dissabte','17:45'],['Infantil S14 B',14,'S14 B','Barcino',1,'Dissabte','09:00'],['Cadet S15 A',15,'S15 A','Can Buxeres',1,'Dissabte','10:30'],['Cadet S15 B',15,'S15 B','Vila Olímpica',0,'Dissabte','14:15'],['Cadet S16 A',16,'S16 A','Sant Ignasi',1,'Diumenge','10:00'],['Cadet S16 B',16,'S16 B','Sarrià',0,'Diumenge','13:00'],['Juvenil A',18,'JUV A','Badalona',1,'Dissabte','15:30'],['Juvenil B',18,'JUV B','Congrés',0,'Diumenge','18:00'],['Juvenil C',18,'JUV C','Montañesa',0,'Dissabte','15:30'],['Juvenil D',18,'JUV D','At. Hospitalense',0,'Diumenge','14:00'],['Amateur B',20,'AMAT B','Carmelo',1,'Dissabte','20:00'],['Primer Equip',20,'1r EQUIP','Vilafranca',1,'Dissabte','18:00']];
+    const teams = T.map((t, i) => ({ i, name: t[0], age: t[1], short: t[2], rival: t[3], home: t[4], day: t[5], time: t[6], base: t[1] <= 12 ? 6 : 8, res: [0,0,0,0,0].map(() => ({ gf: Math.floor(r() * 5), ga: Math.floor(r() * 4) })) }));
+    const NOMS = ['Pau','Jan','Marc','Nil','Pol','Arnau','Biel','Martí','Àlex','Hugo','Leo','Joel','Eric','Oriol','Adrià','Gerard','Iker','Unai','Roc','Quim','Dani','Sergi','Aleix','Bruno','Mateo','Izan','Lucas','Aitor','Jordi','Xavi','Omar','Youssef','Ibrahim','Kevin','Santi','Guillem','Ferran','Enzo','Nico','Lluc','Ot','Bernat'];
+    const COG = ['Garcia','Martínez','López','Puig','Soler','Vidal','Ferrer','Roca','Serra','Font','Pujol','Casals','Riera','Vila','Mas','Sala','Costa','Navarro','Romero','Torres','Domènech','Bosch','Camps','Rovira','Pons','Castells','Ruiz','Sánchez','Moreno','Giménez','Batlle','Oliver','Prat','Sabaté','Valls','Llorens','Molina','Benítez','Fuster','Marín','El Idrissi','Mendoza'];
+    const GV = { POR: 6, DEF: 6, MIG: 5, DAV: 4 }, CSV = { POR: 4, DEF: 4, MIG: 1, DAV: 0 }, GP = { POR: 0, DEF: .12, MIG: .28, DAV: .45 };
+    const bd = (pos, rs) => {
+      if (r() < .12) return { min: 0, g: 0, a: 0, cs: 0, res: 0, y: 0, coach: 0, pts: 0, pos };
+      const full = r() < .7; let g = 0; if (r() < GP[pos]) { g = 1; if (r() < .25) g = 2; } g = Math.min(g, rs.gf);
+      const a = r() < .2 && rs.gf > g ? 1 : 0; const cs = rs.ga === 0 && full && pos !== 'DAV' ? 1 : 0;
+      const res = rs.gf > rs.ga ? 2 : rs.gf === rs.ga ? 1 : 0; const y = r() < .12 ? 1 : 0; const coach = Math.floor(r() * 4); const min = full ? 2 : 1;
+      return { min, g, a, cs, res, y, coach, pos, pts: min + g * GV[pos] + a * 3 + cs * CSV[pos] + res - y + coach };
+    };
+    const POS = ['POR','POR','DEF','DEF','DEF','DEF','MIG','MIG','MIG','MIG','DAV','DAV','DAV'];
+    const P = []; const used = new Set();
+    teams.forEach(t => POS.forEach((pos, k) => {
+      let n; do { n = pick(NOMS) + ' ' + pick(COG) + ' ' + pick(COG); } while (used.has(n)); used.add(n);
+      const bds = t.res.map(rs => bd(pos, rs));
+      const drift = Math.round((r() * 2.8 - 0.9) * 10) / 10;
+      P.push({ id: P.length, name: n, pos, team: t.i, num: k + 1, bds, hist: bds.slice(0, 4).map(b => b.pts), price: Math.max(t.base - 1, t.base + drift) });
+    }));
+    return { teams, P, GV, CSV };
+  }
+  fmt(n) { return (Math.round(n * 10) / 10).toFixed(1).replace('.', ',') + 'M'; }
+  toastMsg(m) { this.setState({ toast: m }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: null }), 2600); }
+  componentWillUnmount() { clearTimeout(this._t); }
+  calc(pos, s, sc) {
+    if (!s.m) return 0;
+    const { GV, CSV } = this.D;
+    const cs = sc.ga === 0 && s.m === 2 ? CSV[pos] : 0;
+    const res = sc.gf > sc.ga ? 2 : sc.gf === sc.ga ? 1 : 0;
+    return s.m + s.g * GV[pos] + s.a * 3 + cs + res - s.y - s.r * 3 + s.c;
+  }
+  setStat(id, k, v) { this.setState(st => ({ stats: { ...st.stats, [id]: { ...st.stats[id], [k]: v } }, status: { ...st.status, [this.state.players[id].team]: st.status[this.state.players[id].team] === 'pub' ? 'pub' : 'draft' } })); }
+  setFix(i, k, v) { this.setState(st => { const key = st.jor === 6 ? 'j6' : 'fixtures'; const arr = st[key].slice(); arr[i] = { ...arr[i], [k]: v }; return { [key]: arr }; }); }
+  renderVals() {
+    const st = this.state, { teams } = this.D;
+    const gold = '#F2C314', ink = '#0A0A0A', lineS = 'rgba(10,10,10,0.22)', f3 = '#7E7B75';
+    const statusMeta = { pub: ['PUBLICAT', '#0A0A0A', '#fff'], draft: ['ESBORRANY', '#F7DC6F', '#0A0A0A'], pend: ['PENDENT', 'transparent', '#7E7B75'] };
+    const pendN = teams.filter(t => st.status[t.i] !== 'pub').length;
+    const pubN = 20 - pendN;
+    const chip = (items, cur, set) => items.map(([k, l]) => ({ label: l, onClick: () => set(k), bg: cur === k ? ink : 'transparent', color: cur === k ? '#fff' : '#4A4844', border: cur === k ? ink : lineS }));
+    const seg = (items, cur, set, on = ink, onC = '#fff') => items.map(([k, l]) => ({ label: l, onClick: () => set(k), bg: cur === k ? on : '#fff', color: cur === k ? onC : '#4A4844' }));
+    const nav = [['jornada', 'JORNADA', 0], ['resultats', 'RESULTATS', pendN], ['jugadors', 'JUGADORS', 0], ['equips', 'EQUIPS', 0]].map(([k, l, b]) => ({ label: l, onClick: () => this.setState({ sec: k }), line: st.sec === k ? gold : 'transparent', bg: st.sec === k ? '#131313' : 'transparent', color: st.sec === k ? '#fff' : '#B8B5AE', hasBadge: b > 0 && !st.closed, badge: String(b) }));
+    // jornada
+    const isJ6 = st.jor === 6; const fixSrc = isJ6 ? st.j6 : st.fixtures;
+    const fixtures = (fixSrc || []).map((f, i) => { const t = teams[i]; const sm = isJ6 ? ['PENDENT', 'transparent', f3] : statusMeta[st.status[i]]; const home = f.home;
+      return { team: t.name, format: (t.age <= 12 ? 'Futbol 7' : 'Futbol 11') + ' · ' + t.short, rival: f.rival, day: f.day, time: f.time, onRival: e => this.setFix(i, 'rival', e.target.value), onDay: e => this.setFix(i, 'day', e.target.value), onTime: e => this.setFix(i, 'time', e.target.value), setHome: () => this.setFix(i, 'home', 1), setAway: () => this.setFix(i, 'home', 0), homeBg: home ? ink : '#fff', homeColor: home ? '#fff' : '#4A4844', awayBg: home ? '#fff' : ink, awayColor: home ? '#4A4844' : '#fff', status: sm[0], stBg: sm[1], stColor: sm[2], stBorder: sm[1], cta: isJ6 ? 'Disponible dissabte' : st.status[i] === 'pub' ? 'Revisar →' : 'Entrar resultat →', onOpen: () => { if (isJ6) return this.toastMsg('Els resultats de la J6 s’obren quan comenci la jornada.'); this.setState({ sec: 'resultats', selM: i }); } }; });
+    // resultats
+    const sm = st.selM, tm = teams[sm], fx = st.fixtures[sm], sc = st.score[sm];
+    const roster = st.players.filter(p => p.team === sm && !p.removed);
+    const statRows = roster.map(p => { const s = st.stats[p.id] || { m: 0, g: 0, a: 0, y: 0, r: 0, c: 0 }; const pts = this.calc(p.pos, s, sc); const parts = p.name.split(' ');
+      return { name: p.name, initials: (parts[0][0] || '') + (parts[1] ? parts[1][0] : ''), num: p.num, pos: p.pos, g: s.g, a: s.a, op: s.m ? 1 : 0.55,
+        minOpts: seg([[0, 'NO'], [1, '< ½'], [2, '> ½']], s.m, v => this.setStat(p.id, 'm', v)),
+        gInc: () => this.setStat(p.id, 'g', s.g + 1), gDec: () => this.setStat(p.id, 'g', Math.max(0, s.g - 1)), aInc: () => this.setStat(p.id, 'a', s.a + 1), aDec: () => this.setStat(p.id, 'a', Math.max(0, s.a - 1)),
+        yToggle: () => this.setStat(p.id, 'y', s.y ? 0 : 1), rToggle: () => this.setStat(p.id, 'r', s.r ? 0 : 1), yBg: s.y ? '#FFD83D' : '#fff', rBg: s.r ? '#B94A3B' : '#fff', yMark: s.y ? '1' : '', rMark: s.r ? '1' : '',
+        coachOpts: seg([[0, '0'], [1, '1'], [2, '2'], [3, '3']], s.c, v => this.setStat(p.id, 'c', v)),
+        pts: (pts > 0 ? '' : '') + pts, ptsColor: pts >= 8 ? '#C99E00' : pts < 0 ? '#B94A3B' : ink }; });
+    const goalsSum = roster.reduce((x, p) => x + ((st.stats[p.id] || {}).g || 0), 0);
+    const setScore = (k, d) => this.setState(s2 => ({ score: { ...s2.score, [sm]: { ...s2.score[sm], [k]: Math.max(0, s2.score[sm][k] + d) } }, status: { ...s2.status, [sm]: s2.status[sm] === 'pub' ? 'pub' : 'draft' } }));
+    const matchList = teams.map(t => ({ team: t.name, vs: 'vs ' + st.fixtures[t.i].rival + ' · ' + st.fixtures[t.i].day.slice(0, 3) + ' ' + st.fixtures[t.i].time, onClick: () => this.setState({ selM: t.i }), line: t.i === sm ? gold : 'transparent', bg: t.i === sm ? '#fff' : 'transparent', dot: st.status[t.i] === 'pub' ? ink : st.status[t.i] === 'draft' ? '#F7DC6F' : 'rgba(10,10,10,0.15)' }));
+    // jugadors
+    const q = st.search.trim().toLowerCase();
+    const filtered = st.players.filter(p => !p.removed && (st.fTeam < 0 || p.team === st.fTeam) && (st.fPos === 'TOTS' || p.pos === st.fPos) && (!q || p.name.toLowerCase().includes(q)));
+    const playerRows = filtered.slice(0, st.limit).map(p => { const parts = p.name.split(' '); return { name: p.name, initials: (parts[0][0] || '') + (parts[1] ? parts[1][0] : ''), team: teams[p.team].name, pos: p.pos, num: p.num, price: this.fmt(p.price), pts: p.pts, photo: p.photo ? 'PUJADA' : 'FALTA', bg: st.edit === p.id ? '#fff' : 'transparent', onClick: () => this.setState({ edit: p.id, form: { name: p.name, team: p.team, pos: p.pos, num: String(p.num), err: false } }) }; });
+    const teamOpts = teams.map(t => ({ value: String(t.i), label: t.name }));
+    // edit
+    const f = st.form; const editing = st.edit != null && f; const isNew = editing && st.edit === 'new'; const ep = editing && !isNew ? st.players[st.edit] : null; const eT = editing ? teams[f.team] : null;
+    // equips
+    const teamCards = teams.map(t => { const n = st.players.filter(p => p.team === t.i && !p.removed).length; const fx2 = st.fixtures[t.i]; return { name: t.name, cat: t.short, format: t.age <= 12 ? 'F7' : 'F11', count: n, base: this.fmt(t.base), next: 'J5 · ' + (fx2.home ? 'vs ' : 'a ') + fx2.rival + ' · ' + fx2.day + ' ' + fx2.time, onClick: () => this.setState({ sec: 'jugadors', fTeam: t.i, fPos: 'TOTS', search: '', limit: 40 }) }; });
+    const allPub = pendN === 0;
+    return {
+      nav, playerCount: st.players.filter(p => !p.removed).length, marketLabel: st.closed ? 'obre dilluns 00:00' : 'tancat (jornada)',
+      sJornada: st.sec === 'jornada', sResultats: st.sec === 'resultats', sJugadors: st.sec === 'jugadors', sEquips: st.sec === 'equips',
+      jTitle: 'Jornada ' + st.jor, jDates: isJ6 ? 'Dissabte 3 i diumenge 4 d’octubre de 2026' : 'Dissabte 26 i diumenge 27 de setembre de 2026',
+      jChips: chip([[5, 'J5 · ACTUAL'], [6, 'J6']], st.jor, k => this.setState({ jor: k })),
+      jHasFixtures: !!fixSrc, jEmpty: !fixSrc,
+      jStats: [{ k: 'PARTITS', v: '20', color: ink }, { k: 'PUBLICATS', v: isJ6 ? '0' : String(pubN), color: ink }, { k: 'PER ENTRAR', v: isJ6 ? '20' : String(pendN), color: pendN && !isJ6 ? '#C99E00' : ink }, { k: 'MERCAT', v: st.closed ? 'OBERT DILL.' : 'TANCAT', color: ink }],
+      fixtures,
+      createJ6: () => this.setState({ j6: teams.map(t => ({ rival: '', home: 1 - st.fixtures[t.i].home, day: st.fixtures[t.i].day, time: st.fixtures[t.i].time })) }),
+      closeBg: allPub && !st.closed && !isJ6 ? gold : '#F7DC6F', closeLabel: st.closed ? 'Jornada tancada' : isJ6 ? 'Tancar jornada' : allPub ? 'Tancar jornada i actualitzar preus →' : 'Falten ' + pendN + ' partits',
+      closeJornada: () => { if (isJ6) return this.toastMsg('La J6 encara no ha començat.'); if (st.closed) return; if (!allPub) return this.toastMsg('Publica tots els partits abans de tancar la jornada.'); this.setState(s2 => ({ closed: true, players: s2.players.map(p => { const s = s2.stats[p.id]; const pts = s ? this.calc(p.pos, s, s2.score[p.team]) : 0; return { ...p, pts: p.pts + pts, price: Math.max(teams[p.team].base - 1, p.price + (pts - 5) * 0.05) }; }) })); this.toastMsg('J5 tancada. Preus actualitzats, premis pagats i mercat obert dilluns.'); },
+      matchList, mInfo: tm.name.toUpperCase() + ' · ' + (tm.age <= 12 ? 'FUTBOL 7' : 'FUTBOL 11') + ' · ' + fx.day.toUpperCase() + ' ' + fx.time, mTitle: 'APA vs ' + fx.rival, gf: sc.gf, ga: sc.ga,
+      gfInc: () => setScore('gf', 1), gfDec: () => setScore('gf', -1), gaInc: () => setScore('ga', 1), gaDec: () => setScore('ga', -1),
+      goalMismatch: goalsSum !== sc.gf, goalMsg: 'Els gols dels jugadors (' + goalsSum + ') no quadren amb el resultat (' + sc.gf + '). Si n’hi ha cap en pròpia porta, ignora aquest avís.',
+      statRows, publishLabel: st.status[sm] === 'pub' ? 'Tornar a publicar →' : 'Publicar punts →',
+      saveDraft: () => { this.setState(s2 => ({ status: { ...s2.status, [sm]: s2.status[sm] === 'pub' ? 'pub' : 'draft' } })); this.toastMsg('Esborrany desat. Els mànagers encara no el veuen.'); },
+      publish: () => { const next = teams.find(t => t.i !== sm && st.status[t.i] !== 'pub'); this.setState(s2 => ({ status: { ...s2.status, [sm]: 'pub' }, selM: next ? next.i : sm })); this.toastMsg(tm.name + ': punts publicats a totes les lligues.'); },
+      search: st.search, onSearch: e => this.setState({ search: e.target.value, limit: 40 }), fTeam: String(st.fTeam), onFTeam: e => this.setState({ fTeam: Number(e.target.value), limit: 40 }), teamOpts,
+      posChips: chip([['TOTS', 'TOTS'], ['POR', 'POR'], ['DEF', 'DEF'], ['MIG', 'MIG'], ['DAV', 'DAV']], st.fPos, k => this.setState({ fPos: k, limit: 40 })),
+      countLabel: 'Mostrant ' + Math.min(st.limit, filtered.length) + ' de ' + filtered.length, playerRows, hasMore: filtered.length > st.limit, showMore: () => this.setState({ limit: st.limit + 40 }),
+      importCsv: () => this.toastMsg('Importa un full de càlcul amb nom, equip, posició i dorsal.'),
+      addPlayer: () => this.setState({ edit: 'new', form: { name: '', team: st.fTeam >= 0 ? st.fTeam : 0, pos: 'MIG', num: '', err: false } }),
+      teamCards,
+      hasEdit: !!editing, editEyebrow: isNew ? 'NOU JUGADOR' : editing ? 'EDITAR · ' + teams[f.team].short : '', editTitle: isNew ? (f.name || 'Nou jugador') : editing ? f.name : '',
+      slotId: isNew ? 'foto-nou' : 'foto-' + st.edit,
+      eName: editing ? f.name : '', onEName: e => this.setState({ form: { ...st.form, name: e.target.value, err: false } }), nameErr: editing && f.err, nameBorder: editing && f.err ? '#B94A3B' : lineS,
+      eTeam: editing ? String(f.team) : '0', onETeam: e => this.setState({ form: { ...st.form, team: Number(e.target.value) } }),
+      ePosOpts: editing ? seg([['POR', 'POR'], ['DEF', 'DEF'], ['MIG', 'MIG'], ['DAV', 'DAV']], f.pos, v => this.setState({ form: { ...st.form, pos: v } })) : [],
+      eNum: editing ? f.num : '', onENum: e => this.setState({ form: { ...st.form, num: e.target.value.replace(/\D/g, '').slice(0, 2) } }),
+      eBase: editing ? this.fmt(eT.base) : '', eBaseNote: editing ? (eT.base === 6 ? 'Equips fins al S12' : 'Equips del S13 en amunt') : '', ePrice: ep ? this.fmt(ep.price) : editing ? this.fmt(eT.base) : '',
+      removeLabel: isNew ? 'Cancel·lar' : 'Donar de baixa',
+      removePlayer: () => { if (isNew) return this.setState({ edit: null, form: null }); this.setState(s2 => ({ players: s2.players.map(p => p.id === s2.edit ? { ...p, removed: true } : p), edit: null, form: null })); this.toastMsg('Jugador donat de baixa. Surt de les plantilles i del mercat.'); },
+      savePlayer: () => { if (f.name.trim().split(/\s+/).length < 2) return this.setState({ form: { ...f, err: true } }); if (isNew) { this.setState(s2 => ({ players: s2.players.concat({ id: s2.players.length, name: f.name.trim(), team: f.team, pos: f.pos, num: Number(f.num) || 0, price: teams[f.team].base, pts: 0 }), edit: null, form: null })); this.toastMsg('Jugador afegit. Surt al mercat lliure de totes les lligues.'); } else { this.setState(s2 => ({ players: s2.players.map(p => p.id === s2.edit ? { ...p, name: f.name.trim(), team: f.team, pos: f.pos, num: Number(f.num) || p.num } : p), edit: null, form: null })); this.toastMsg('Canvis desats.'); } },
+      closeEdit: () => this.setState({ edit: null, form: null }), stop: e => e.stopPropagation(),
+      hasToast: !!st.toast, toast: st.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

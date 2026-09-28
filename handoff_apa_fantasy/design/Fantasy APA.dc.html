@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0A0A0A"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#0A0A0A"/><text x="50" y="62" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="30" fill="#F2C314">APA</text></svg></template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>@font-face{font-family:"EA Sports";src:url(assets/EASPORTS15.ttf) format("truetype");font-display:block;unicode-range:U+0020-007E}html:root{--as1-gold:#F2C314;--as1-gold-hi:#FFD83D;--as1-gold-lo:#C99E00;--as1-gold-soft:#F7DC6F}html:root{--font-display:"EA Sports","Montserrat",sans-serif}</style>
+<link rel="stylesheet" href="_ds/as1-design-system-7406f1b0-b2da-4d6c-86a8-08a4c2150db1/colors_and_type.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="_ds/as1-design-system-7406f1b0-b2da-4d6c-86a8-08a4c2150db1/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#e9e6e0;font-family:Montserrat,system-ui,sans-serif}
+a{color:#F2C314;text-decoration:none}a:hover{color:#FFD83D}
+input{outline:none}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+@keyframes dealIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+::-webkit-scrollbar{width:0;height:0}
+</style>
+</helmet>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Fantasy APA · prototip + 2 variants de «El meu equip»</span></div>
+<div class="dv-opts">
+
+<div style="width:300px;display:flex;flex-direction:column;gap:14px;font:13px/1.55 Montserrat,system-ui,sans-serif;color:#2a2a2a;padding-top:22px">
+  <div style="font:800 18px/1.1 var(--font-display);text-transform:uppercase;color:#0A0A0A">Supòsits</div>
+  <div>20 equips del club, del Prebenjamí S8 al Primer Equip. Tots els jugadors es poden barrejar en una mateixa lliga.</div>
+  <div>Preu inicial: 6,0M fins al S12 i 8,0M a partir del S13. Després el preu puja o baixa segons el rendiment i el mercat.</div>
+  <div>Plantilla aleatòria de 15: onze en 4-4-2 i 4 suplents (1 POR, 1 DEF, 1 MIG, 1 DAV). Saldo inicial de 0M. Es guanyen diners venent jugadors i amb cada jornada: 0,1M per punt, i 3M, 2M o 1M per als tres primers. Com a màxim 18 jugadors a la plantilla i 3 del mateix equip real.</div>
+  <div>El mercat és obert de dilluns a divendres i tanca el cap de setmana. Cada dia a les 00:00 surten 16 jugadors lliures triats a l'atzar. Les subhastes es resolen quan tanca. Un administrador del club introdueix les estadístiques.</div>
+  <div>Les cares de moment són inicials. Els noms i els resultats són inventats; els rivals i els horaris són els del calendari.</div>
+  <div style="font-size:12px;color:#6b6760">Tweaks: dia de la setmana (mercat obert o jornada en joc), pantalla inicial, límit per equip.</div>
+</div>
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Prototip navegable · camp</div>
+<div style="width:390px;height:844px;border-radius:44px;overflow:hidden;position:relative;background:#0A0A0A;box-shadow:0 20px 60px rgba(0,0,0,.25);border:8px solid #1a1a1a;color:#fff;font-family:var(--font-body)">
+
+  <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font:600 14px var(--font-body);position:relative;z-index:3"><span>{{ clock }}</span><span style="font-size:11px;letter-spacing:.1em;color:var(--ink-fg-2)">5G · 84%</span></div>
+
+  <sc-if value="{{ isOnboard }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;inset:0;background:#0A0A0A url(assets/bg-grain.png) center / cover;display:flex;flex-direction:column;padding:64px 24px 28px;box-sizing:border-box">
+
+    <sc-if value="{{ step0 }}" hint-placeholder-val="{{ true }}">
+    <div style="flex:1;display:flex;flex-direction:column">
+      <img src="assets/escut.png" alt="Escut CE Apa Poble Sec" style="width:150px;height:150px;margin-top:40px">
+      <div style="margin-top:36px;font:600 11px/1.2 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--as1-gold)">CE Apa Poble Sec</div>
+      <div style="margin-top:12px;font:800 46px/0.95 var(--font-display);text-transform:uppercase;letter-spacing:-.02em">Fantasy<br>APA</div>
+      <div style="margin-top:18px;font:400 15px/1.6 var(--font-body);color:var(--ink-fg-2);max-width:300px">La lliga fantasy del club. 20 equips, del Prebenjamí S8 al Primer Equip. Crea una lliga amb els teus amics, fins a 50 per lliga.</div>
+      <div style="flex:1"></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button onClick="{{ goCreate }}" style="height:52px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 13px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFD83D">Crear una lliga →</button>
+        <button onClick="{{ goJoin }}" style="height:52px;background:transparent;color:#fff;border:1px solid var(--ink-line-strong);font:700 13px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#fff;color:#0A0A0A">Tinc un codi</button>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step1 }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;flex-direction:column;gap:22px">
+      <div onClick="{{ goBack }}" style="font:600 12px var(--font-body);color:var(--ink-fg-2);cursor:pointer;letter-spacing:.06em">← ENRERE</div>
+      <div style="font:800 30px/1 var(--font-display);text-transform:uppercase">{{ step1Title }}</div>
+      <sc-if value="{{ join }}">
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">CODI DE LA LLIGA</span>
+          <input value="{{ code }}" onChange="{{ onCode }}" placeholder="APA-7Q3K" style="height:52px;background:#131313;border:1px solid var(--ink-line-strong);color:#fff;padding:0 16px;font:800 20px var(--font-display);letter-spacing:.06em;text-transform:uppercase">
+        </label>
+      </sc-if>
+      <sc-if value="{{ notJoin }}">
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">NOM DE LA LLIGA</span>
+          <input value="{{ leagueName }}" onChange="{{ onLeague }}" style="height:52px;background:#131313;border:1px solid var(--ink-line-strong);color:#fff;padding:0 16px;font:500 16px var(--font-body)">
+        </label>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">MÀXIM DE PARTICIPANTS</span>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+            <sc-for list="{{ sizeOpts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.onClick }}" style="height:44px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.color }};font:800 15px var(--font-display);cursor:pointer">{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">NOM DEL TEU EQUIP</span>
+        <input value="{{ teamName }}" onChange="{{ onTeam }}" style="height:52px;background:#131313;border:1px solid var(--ink-line-strong);color:#fff;padding:0 16px;font:500 16px var(--font-body)">
+      </label>
+      <div style="font:400 13px/1.55 var(--font-body);color:var(--ink-fg-2)">Rebràs 15 jugadors a l'atzar: un onze i quatre suplents, amb un màxim de 3 jugadors del mateix equip. Comences amb 0M de saldo.</div>
+      <div style="flex:1"></div>
+      <button onClick="{{ startDeal }}" style="height:52px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 13px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFD83D">Repartir plantilla →</button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step2 }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;min-height:0">
+      <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--as1-gold)">{{ dealEyebrow }}</div>
+      <div style="font:800 26px/1 var(--font-display);text-transform:uppercase">La teva plantilla</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;overflow:auto;min-height:0">
+        <sc-for list="{{ dealt }}" as="p" hint-placeholder-count="6">
+          <div style="background:#131313;border:1px solid var(--ink-line);padding:9px 8px;display:flex;flex-direction:column;gap:3px;animation:dealIn .38s cubic-bezier(.22,.61,.36,1) both">
+            <div style="display:flex;justify-content:space-between;font:700 9px var(--font-body);letter-spacing:.1em;color:var(--ink-fg-3)"><span>{{ p.pos }}</span><span>{{ p.tshort }}</span></div>
+            <div style="width:44px;height:44px;margin:4px 0 2px;background:#1C1C1C;overflow:hidden"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div></div>
+            <div style="font:600 10px/1.25 var(--font-body);min-height:25px">{{ p.short }}</div>
+            <div style="font:700 11px var(--font-body);color:var(--as1-gold)">{{ p.price }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:1"></div>
+      <sc-if value="{{ dealDone }}">
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--ink-line);padding-top:12px;font:500 11px var(--font-body);color:var(--ink-fg-2);white-space:nowrap;gap:8px"><span>Valor <b style="color:#fff">{{ squadValue }}</b></span><span>Saldo <b style="color:#fff">0,0M</b></span><span>Codi <b style="color:var(--as1-gold)">APA-7Q3K</b></span></div>
+        <button onClick="{{ enterApp }}" style="height:52px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 13px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFD83D">Entrar a la lliga →</button>
+      </sc-if>
+    </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:44px 0 0 0;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 18px 12px;border-bottom:1px solid var(--ink-line)">
+      <img src="assets/escut.png" alt="" style="width:30px;height:30px">
+      <div style="flex:1;min-width:0">
+        <div style="font:800 15px/1.1 var(--font-display);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ headTitle }}</div>
+        <div style="font:600 9.5px/1.4 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-fg-3)">{{ headSub }}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font:600 9px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3)">SALDO</div>
+        <div style="font:800 14px var(--font-display);color:var(--as1-gold)">{{ saldoLabel }}</div>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;overflow-x:hidden;min-height:0">
+
+      <sc-if value="{{ tabEquip }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:14px 16px 24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--ink-line)">
+          <sc-for list="{{ teamStats }}" as="s" hint-placeholder-count="4">
+            <div style="padding:10px 8px;border-right:1px solid var(--ink-line)">
+              <div style="font:600 8.5px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3);text-transform:uppercase">{{ s.k }}</div>
+              <div style="font:800 17px/1.2 var(--font-display);margin-top:4px">{{ s.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ locked }}">
+          <div style="border:1px solid var(--as1-gold);padding:10px 12px;font:500 12px/1.45 var(--font-body);color:var(--ink-fg-2)"><b style="color:var(--as1-gold)">JORNADA EN JOC.</b> Alineació bloquejada fins diumenge 23:59.</div>
+        </sc-if>
+        <div style="position:relative;background:#0f0f0f;border:1px solid var(--ink-line);padding:14px 0 10px;display:flex;flex-direction:column;gap:6px;overflow:hidden">
+          <div style="position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--ink-line)"></div>
+          <div style="position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px 0 0 -48px;border:1px solid var(--ink-line);border-radius:50%"></div>
+          <div style="position:absolute;left:25%;right:25%;top:0;height:54px;border:1px solid var(--ink-line);border-top:0"></div>
+          <div style="position:absolute;left:25%;right:25%;bottom:0;height:54px;border:1px solid var(--ink-line);border-bottom:0"></div>
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+            <div style="position:relative;display:flex;justify-content:space-evenly;padding:4px 0">
+              <sc-for list="{{ row.tokens }}" as="t" hint-placeholder-count="4">
+                <div onClick="{{ t.onClick }}" style="width:78px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer">
+                  <sc-if value="{{ t.filled }}">
+                    <div style="position:relative;width:46px;height:46px;background:#1C1C1C;border:1px solid {{ t.border }};display:flex;align-items:center;justify-content:center;font:800 14px var(--font-display)"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div><sc-if value="{{ t.isCap }}"><div style="position:absolute;top:-7px;right:-7px;width:17px;height:17px;background:var(--as1-gold);color:#0A0A0A;font:800 9px/17px var(--font-display);text-align:center">C</div></sc-if></div>
+                    <div style="font:600 10px/1.2 var(--font-body);text-align:center;max-width:78px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.short }}</div>
+                    <div style="font:700 9.5px/1 var(--font-body);color:var(--as1-gold);letter-spacing:.04em">{{ t.sub }}</div>
+                  </sc-if>
+                  <sc-if value="{{ t.empty }}">
+                    <div style="width:46px;height:46px;border:1px dashed var(--ink-line-strong);display:flex;align-items:center;justify-content:center;font:400 20px var(--font-body);color:var(--ink-fg-3)">+</div>
+                    <div style="font:600 10px var(--font-body);color:var(--ink-fg-3)">{{ t.pos }}</div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">SUPLENTS</div>
+          <div style="display:flex;justify-content:space-between;background:#131313;border:1px solid var(--ink-line);padding:10px 0">
+            <sc-for list="{{ bench }}" as="t" hint-placeholder-count="4">
+              <div onClick="{{ t.onClick }}" style="width:82px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer">
+                <sc-if value="{{ t.filled }}">
+                  <div style="width:40px;height:40px;background:#1C1C1C;border:1px solid var(--ink-line-strong);display:flex;align-items:center;justify-content:center;overflow:hidden"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div></div>
+                  <div style="font:600 10px/1.2 var(--font-body);max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.short }}</div>
+                  <div style="font:700 9px var(--font-body);color:var(--ink-fg-3);letter-spacing:.08em">{{ t.pos }} · {{ t.sub }}</div>
+                </sc-if>
+                <sc-if value="{{ t.empty }}">
+                  <div style="width:40px;height:40px;border:1px dashed var(--ink-line-strong);display:flex;align-items:center;justify-content:center;color:var(--ink-fg-3)">+</div>
+                  <div style="font:600 10px var(--font-body);color:var(--ink-fg-3)">{{ t.pos }}</div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <sc-if value="{{ hasReserves }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">{{ reservesLabel }}</div>
+            <sc-for list="{{ reserveRows }}" as="p">
+              <div onClick="{{ p.onClick }}" style="display:flex;align-items:center;gap:10px;padding:8px 10px;background:#131313;border:1px solid var(--ink-line);cursor:pointer">
+                <div style="width:32px;height:32px;background:#1C1C1C;display:flex;align-items:center;justify-content:center;overflow:hidden"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div></div>
+                <div style="flex:1;font:600 12px var(--font-body)">{{ p.name }}<div style="font:500 10px var(--font-body);color:var(--ink-fg-3)">{{ p.pos }} · {{ p.team }}</div></div>
+                <div style="font:700 12px var(--font-body);color:var(--as1-gold)">{{ p.price }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="font:400 12px/1.5 var(--font-body);color:var(--ink-fg-3)">Toca un jugador per canviar-lo, fer-lo capità o vendre'l. El capità puntua doble.</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ tabMercat }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:14px 16px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="border:1px solid {{ mktBorder }};padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font:800 12px var(--font-display);text-transform:uppercase;color:{{ mktColor }}">{{ mktState }}</div>
+          <div style="font:500 11px var(--font-body);color:var(--ink-fg-2)">{{ mktWhen }}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink-line)">
+          <sc-for list="{{ mTabs }}" as="o" hint-placeholder-count="3">
+            <div onClick="{{ o.onClick }}" style="padding:10px 0;text-align:center;font:700 11px var(--font-body);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:{{ o.color }};border-bottom:3px solid {{ o.line }};margin-bottom:-1px">{{ o.label }}</div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ mLliure }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <sc-for list="{{ posChips }}" as="c" hint-placeholder-count="5">
+              <div onClick="{{ c.onClick }}" style="padding:6px 11px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:700 10px var(--font-body);letter-spacing:.08em;cursor:pointer">{{ c.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="3">
+              <div onClick="{{ c.onClick }}" style="padding:6px 11px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:700 10px var(--font-body);letter-spacing:.08em;cursor:pointer">{{ c.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between">
+            <div style="font:500 11px/1.5 var(--font-body);color:var(--ink-fg-3)">{{ freeCount }}</div>
+            <div onClick="{{ nextDay }}" style="flex:none;font:700 10px var(--font-body);letter-spacing:.08em;color:var(--as1-gold);cursor:pointer;padding-top:1px">SIMULAR DEMÀ →</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <sc-for list="{{ freeRows }}" as="p" hint-placeholder-count="6">
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:#131313;border:1px solid var(--ink-line)">
+                <div onClick="{{ p.onClick }}" style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;cursor:pointer">
+                  <div style="width:36px;height:36px;flex:none;background:#1C1C1C;display:flex;align-items:center;justify-content:center;overflow:hidden"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div></div>
+                  <div style="min-width:0">
+                    <div style="font:600 12.5px/1.3 var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</div>
+                    <div style="font:500 10px var(--font-body);color:var(--ink-fg-3)">{{ p.pos }} · {{ p.team }} · {{ p.pts }} pts</div>
+                  </div>
+                </div>
+                <div style="text-align:right;flex:none">
+                  <div style="font:800 13px var(--font-display)">{{ p.price }}</div>
+                  <div style="font:600 9.5px var(--font-body);color:{{ p.trendColor }}">{{ p.trend }}</div>
+                </div>
+                <button onClick="{{ p.onBid }}" style="flex:none;height:34px;padding:0 10px;border:1px solid {{ p.btnBorder }};background:{{ p.btnBg }};color:{{ p.btnColor }};font:700 10px var(--font-body);letter-spacing:.08em;cursor:pointer">{{ p.btn }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ mSubh }}">
+          <div style="font:400 12px/1.5 var(--font-body);color:var(--ink-fg-2)">Les teves pujades són secretes. Guanya la més alta quan tanca el mercat, divendres a les 23:59.</div>
+          <sc-if value="{{ noBids }}"><div style="padding:24px 12px;border:1px dashed var(--ink-line-strong);text-align:center;font:500 12px var(--font-body);color:var(--ink-fg-3)">Encara no has pujat per cap jugador.</div></sc-if>
+          <sc-for list="{{ bidRows }}" as="b">
+            <div onClick="{{ b.onClick }}" style="display:flex;align-items:center;gap:10px;padding:10px;background:#131313;border:1px solid var(--ink-line);cursor:pointer">
+              <div style="width:36px;height:36px;background:#1C1C1C;display:flex;align-items:center;justify-content:center;overflow:hidden"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div></div>
+              <div style="flex:1;min-width:0"><div style="font:600 12.5px var(--font-body)">{{ b.name }}</div><div style="font:500 10px var(--font-body);color:var(--ink-fg-3)">{{ b.team }} · preu {{ b.price }}</div></div>
+              <div style="text-align:right"><div style="font:800 13px var(--font-display);color:var(--as1-gold)">{{ b.amt }}</div><div style="font:600 9.5px var(--font-body);color:var(--ink-fg-2)">{{ b.rivals }}</div></div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ hasBids }}">
+            <button onClick="{{ resolveBids }}" style="height:46px;background:transparent;color:#fff;border:1px solid var(--ink-line-strong);font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Simular tancament del mercat</button>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ mOfer }}">
+          <sc-if value="{{ noOffers }}"><div style="padding:24px 12px;border:1px dashed var(--ink-line-strong);text-align:center;font:500 12px var(--font-body);color:var(--ink-fg-3)">No tens ofertes pendents.</div></sc-if>
+          <sc-for list="{{ offerRows }}" as="o">
+            <div style="padding:12px;background:#131313;border:1px solid var(--ink-line);display:flex;flex-direction:column;gap:10px">
+              <div style="font:500 12px/1.5 var(--font-body);color:var(--ink-fg-2)"><b style="color:#fff">{{ o.from }}</b> t'ofereix <b style="color:var(--as1-gold)">{{ o.amt }}</b> per <b style="color:#fff">{{ o.player }}</b>. Val {{ o.price }}.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <button onClick="{{ o.onAccept }}" style="height:40px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 11px var(--font-body);letter-spacing:.08em;cursor:pointer">ACCEPTAR</button>
+                <button onClick="{{ o.onReject }}" style="height:40px;background:transparent;color:#fff;border:1px solid var(--ink-line-strong);font:700 11px var(--font-body);letter-spacing:.08em;cursor:pointer">REBUTJAR</button>
+              </div>
+            </div>
+          </sc-for>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ tabJornada }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:14px 16px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:6px 0 4px">
+          <div>
+            <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--as1-gold)">{{ jEyebrow }}</div>
+            <div style="font:800 64px/0.9 var(--font-display);letter-spacing:-.02em;margin-top:8px">{{ jBig }}</div>
+            <div style="font:500 12px var(--font-body);color:var(--ink-fg-2);margin-top:6px">{{ jBigSub }}</div>
+          </div>
+          <div style="text-align:right;font:500 11px/1.6 var(--font-body);color:var(--ink-fg-2)">{{ jSide1 }}<br>{{ jSide2 }}</div>
+        </div>
+        <div style="border:1px solid var(--as1-gold);padding:12px;display:flex;flex-direction:column;gap:8px">
+          <div style="font:600 9.5px var(--font-body);letter-spacing:.16em;color:var(--as1-gold);text-transform:uppercase">{{ payCard.t }}</div>
+          <div style="font:600 12.5px/1.5 var(--font-body)">{{ payCard.a }}</div>
+          <div style="font:500 11.5px/1.5 var(--font-body);color:var(--ink-fg-2)">{{ payCard.b }}</div>
+          <sc-if value="{{ payCard.btn }}"><button onClick="{{ collect }}" style="height:44px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 12px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ payCard.btn }}</button></sc-if>
+        </div>
+        <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3);border-top:1px solid var(--ink-line);padding-top:12px">{{ jListTitle }}</div>
+        <sc-for list="{{ matches }}" as="m" hint-placeholder-count="6">
+          <div style="background:#131313;border:1px solid var(--ink-line);padding:10px 12px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1;min-width:0">
+                <div style="font:800 11.5px var(--font-display);text-transform:uppercase">{{ m.team }}</div>
+                <div style="font:500 11px var(--font-body);color:var(--ink-fg-2);margin-top:2px">{{ m.vs }}</div>
+              </div>
+              <div style="font:800 16px var(--font-display)">{{ m.score }}</div>
+              <div style="width:78px;text-align:right;font:700 9.5px var(--font-body);letter-spacing:.08em;color:{{ m.statusColor }}">{{ m.status }}</div>
+            </div>
+            <sc-if value="{{ m.hasMine }}">
+              <div style="display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--ink-line);padding-top:8px">
+                <sc-for list="{{ m.mine }}" as="x">
+                  <div style="display:flex;gap:6px;align-items:center;padding:4px 8px;background:#1C1C1C;font:600 10.5px var(--font-body)"><span>{{ x.short }}</span><b style="color:var(--as1-gold)">{{ x.pts }}</b></div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ tabLliga }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:14px 16px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid var(--ink-line)">
+          <div><div style="font:600 9px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3)">CODI D'INVITACIÓ</div><div style="font:800 18px var(--font-display);color:var(--as1-gold);margin-top:3px">APA-7Q3K</div></div>
+          <button onClick="{{ copyCode }}" style="height:38px;padding:0 14px;background:transparent;color:#fff;border:1px solid var(--ink-line-strong);font:700 10px var(--font-body);letter-spacing:.1em;cursor:pointer;white-space:nowrap">CONVIDAR →</button>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr 44px 52px;gap:8px;padding:0 10px;font:600 9px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3)"><span>#</span><span>EQUIP</span><span style="text-align:right">J4</span><span style="text-align:right">TOTAL</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ standings }}" as="s" hint-placeholder-count="8">
+            <div onClick="{{ s.onClick }}" style="display:grid;grid-template-columns:28px 1fr 44px 52px;gap:8px;align-items:center;padding:10px;background:{{ s.bg }};border:1px solid {{ s.border }};cursor:pointer">
+              <span style="font:800 13px var(--font-display);color:{{ s.posColor }}">{{ s.pos }}</span>
+              <div style="min-width:0"><div style="font:700 12px var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.team }}</div><div style="font:500 10px var(--font-body);color:var(--ink-fg-3)">{{ s.mgr }}</div></div>
+              <span style="text-align:right;font:600 12px var(--font-body);color:var(--ink-fg-2)">{{ s.j }}</span>
+              <span style="text-align:right;font:800 13px var(--font-display)">{{ s.total }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font:400 11.5px/1.5 var(--font-body);color:var(--ink-fg-3)">Toca un rival per proposar-li un intercanvi.</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ tabMes }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:14px 16px 24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);border-bottom:1px solid var(--ink-line)">
+          <sc-for list="{{ mesTabs }}" as="o" hint-placeholder-count="3">
+            <div onClick="{{ o.onClick }}" style="padding:10px 0;text-align:center;font:700 11px var(--font-body);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:{{ o.color }};border-bottom:3px solid {{ o.line }};margin-bottom:-1px">{{ o.label }}</div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ mesTr }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ tradeRows }}" as="t">
+            <div style="padding:12px;background:#131313;border:1px solid {{ t.border }};display:flex;flex-direction:column;gap:10px">
+              <div style="font:600 9px var(--font-body);letter-spacing:.16em;color:var(--as1-gold)">{{ t.kind }}</div>
+              <div style="display:grid;grid-template-columns:1fr 24px 1fr;align-items:center;gap:6px">
+                <div><div style="font:600 9px var(--font-body);letter-spacing:.12em;color:var(--ink-fg-3)">DONES</div><div style="font:700 12px var(--font-body);margin-top:3px">{{ t.give }}</div></div>
+                <div style="text-align:center;color:var(--ink-fg-3)">⇄</div>
+                <div><div style="font:600 9px var(--font-body);letter-spacing:.12em;color:var(--ink-fg-3)">REPS</div><div style="font:700 12px var(--font-body);margin-top:3px">{{ t.get }}</div></div>
+              </div>
+              <div style="font:500 11px var(--font-body);color:var(--ink-fg-2)">{{ t.note }}</div>
+              <sc-if value="{{ t.incoming }}">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                  <button onClick="{{ t.onAccept }}" style="height:40px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 11px var(--font-body);letter-spacing:.08em;cursor:pointer">ACCEPTAR</button>
+                  <button onClick="{{ t.onReject }}" style="height:40px;background:transparent;color:#fff;border:1px solid var(--ink-line-strong);font:700 11px var(--font-body);letter-spacing:.08em;cursor:pointer">REBUTJAR</button>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+
+          <div style="font:800 16px var(--font-display);text-transform:uppercase;margin-top:6px">Nou intercanvi 1×1</div>
+          <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">AMB QUI</div>
+          <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px">
+            <sc-for list="{{ rivalChips }}" as="c" hint-placeholder-count="5">
+              <div onClick="{{ c.onClick }}" style="flex:none;padding:7px 12px;border-radius:999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};font:700 10.5px var(--font-body);cursor:pointer;white-space:nowrap">{{ c.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="font:600 9px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3);margin-bottom:2px">DONES</div>
+              <div style="max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:4px">
+                <sc-for list="{{ trMine }}" as="p" hint-placeholder-count="5">
+                  <div onClick="{{ p.onClick }}" style="padding:7px 8px;border:1px solid {{ p.border }};background:{{ p.bg }};cursor:pointer"><div style="font:600 11px/1.25 var(--font-body)">{{ p.short }}</div><div style="font:500 9.5px var(--font-body);color:var(--ink-fg-3)">{{ p.pos }} · {{ p.tshort }} · {{ p.price }}</div></div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="font:600 9px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3);margin-bottom:2px">REPS</div>
+              <div style="max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:4px">
+                <sc-for list="{{ trTheirs }}" as="p" hint-placeholder-count="5">
+                  <div onClick="{{ p.onClick }}" style="padding:7px 8px;border:1px solid {{ p.border }};background:{{ p.bg }};cursor:pointer"><div style="font:600 11px/1.25 var(--font-body)">{{ p.short }}</div><div style="font:500 9.5px var(--font-body);color:var(--ink-fg-3)">{{ p.pos }} · {{ p.tshort }} · {{ p.price }}</div></div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--ink-line);padding:8px 10px">
+            <div style="font:500 11.5px var(--font-body);color:var(--ink-fg-2)">Diners extra</div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <button onClick="{{ trCashDec }}" style="width:32px;height:32px;background:transparent;border:1px solid var(--ink-line-strong);color:#fff;cursor:pointer">−</button>
+              <div style="font:800 13px var(--font-display);min-width:74px;text-align:center">{{ trCash }}</div>
+              <button onClick="{{ trCashInc }}" style="width:32px;height:32px;background:transparent;border:1px solid var(--ink-line-strong);color:#fff;cursor:pointer">+</button>
+            </div>
+          </div>
+          <button onClick="{{ sendTrade }}" style="height:50px;background:{{ trBtnBg }};color:#0A0A0A;border:0;font:700 12px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Enviar proposta →</button>
+        </sc-if>
+
+        <sc-if value="{{ mesPerfil }}">
+          <div style="display:flex;gap:14px;align-items:center">
+            <div style="width:72px;height:72px;border:1px dashed var(--ink-line-strong);display:flex;align-items:center;justify-content:center;font:600 9px/1.3 var(--font-body);letter-spacing:.1em;color:var(--ink-fg-3);text-align:center">CARA<br>AVIAT</div>
+            <div><div style="font:800 18px var(--font-display);text-transform:uppercase">{{ teamName }}</div><div style="font:500 12px var(--font-body);color:var(--ink-fg-2);margin-top:4px">Mànager des de la J1</div></div>
+          </div>
+          <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--ink-fg-3)">LES MEVES LLIGUES</div>
+          <sc-for list="{{ myLeagues }}" as="l" hint-placeholder-count="2">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#131313;border:1px solid var(--ink-line)">
+              <div><div style="font:700 13px var(--font-body)">{{ l.name }}</div><div style="font:500 10.5px var(--font-body);color:var(--ink-fg-3)">{{ l.meta }}</div></div>
+              <div style="font:800 16px var(--font-display);color:var(--as1-gold)">{{ l.pos }}</div>
+            </div>
+          </sc-for>
+          <button onClick="{{ restart }}" style="height:46px;background:transparent;color:#fff;border:1px solid var(--ink-line-strong);font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Crear o unir-me a una altra lliga</button>
+        </sc-if>
+
+        <sc-if value="{{ mesPunts }}">
+          <div style="font:400 12px/1.5 var(--font-body);color:var(--ink-fg-2)">Un administrador del club introdueix les estadístiques després de cada partit. En futbol 7 compten igual.</div>
+          <div style="border:1px solid var(--ink-line)">
+            <sc-for list="{{ rules }}" as="r" hint-placeholder-count="8">
+              <div style="display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:1px solid var(--ink-line);font:500 12px var(--font-body)"><span style="color:var(--ink-fg-2)">{{ r.k }}</span><b style="color:{{ r.color }};text-align:right">{{ r.v }}</b></div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ tabNormes }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column">
+        <div style="padding:22px 18px 20px;background:#0A0A0A url(assets/bg-grain.png) center / cover;border-bottom:1px solid var(--ink-line)">
+          <div style="font:600 10px var(--font-body);letter-spacing:.18em;color:var(--as1-gold)">REGLAMENT · TEMPORADA 2026-27</div>
+          <div style="font:800 30px/0.98 var(--font-display);text-transform:uppercase;margin-top:10px">Com es juga</div>
+          <div style="font:400 13px/1.6 var(--font-body);color:var(--ink-fg-2);margin-top:10px">Fes el teu onze amb jugadors de tot el club, suma punts cada cap de setmana i guanya diners per fitxar. Toca una secció per obrir-la.</div>
+        </div>
+        <sc-for list="{{ normes }}" as="s" hint-placeholder-count="12">
+          <div style="border-bottom:1px solid var(--ink-line)">
+            <div onClick="{{ s.onClick }}" style="display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer">
+              <span style="font:800 12px var(--font-display);color:var(--as1-gold);width:22px">{{ s.n }}</span>
+              <span style="flex:1;font:800 13px/1.2 var(--font-display);text-transform:uppercase">{{ s.title }}</span>
+              <span style="font:400 18px/1 var(--font-body);color:var(--ink-fg-3)">{{ s.sign }}</span>
+            </div>
+            <sc-if value="{{ s.open }}">
+              <div style="padding:0 18px 18px 54px;display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ s.paras }}" as="p">
+                  <div style="display:flex;gap:10px;font:400 13px/1.6 var(--font-body);color:var(--ink-fg-2)"><span style="flex:none;width:4px;height:4px;background:var(--as1-gold);margin-top:9px"></span><span>{{ p }}</span></div>
+                </sc-for>
+                <sc-if value="{{ s.hasRows }}">
+                  <div style="border:1px solid var(--ink-line);margin-top:4px">
+                    <sc-for list="{{ s.rows }}" as="r">
+                      <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-bottom:1px solid var(--ink-line);font:500 12px var(--font-body)"><span style="color:var(--ink-fg-2)">{{ r.k }}</span><b style="color:{{ r.color }};text-align:right;white-space:nowrap">{{ r.v }}</b></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="padding:18px;font:400 11.5px/1.55 var(--font-body);color:var(--ink-fg-3)">Dubtes o errors en les puntuacions: parla amb l'administrador del club. Aquestes normes poden canviar entre temporades, mai a meitat de jornada.</div>
+      </div>
+      </sc-if>
+    </div>
+
+    <div style="height:74px;flex:none;display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--ink-line);background:#0A0A0A;padding-bottom:14px;box-sizing:border-box">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+        <div onClick="{{ n.onClick }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;position:relative">
+          <div style="width:22px;height:3px;background:{{ n.line }}"></div>
+          <div style="font:700 9px var(--font-body);letter-spacing:.06em;color:{{ n.color }}">{{ n.label }}</div>
+          <sc-if value="{{ n.badge }}"><div style="position:absolute;top:14px;right:10px;min-width:14px;height:14px;border-radius:999px;background:var(--as1-gold);color:#0A0A0A;font:800 8px/14px var(--font-body);text-align:center">{{ n.badgeN }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ hasSel }}">
+  <div onClick="{{ closeSel }}" style="position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:10;display:flex;align-items:flex-end">
+    <div onClick="{{ stop }}" style="width:100%;max-height:88%;overflow:auto;background:#131313;border-top:2px solid var(--as1-gold);padding:18px 18px 30px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div style="width:64px;height:78px;flex:none;background:#1C1C1C;border:1px solid var(--ink-line-strong);display:flex;align-items:center;justify-content:center;overflow:hidden"><div style="position:relative;width:100%;aspect-ratio:1/1;align-self:flex-end;flex:none"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div></div>
+        <div style="flex:1;min-width:0">
+          <div style="font:600 9.5px var(--font-body);letter-spacing:.16em;color:var(--as1-gold)">{{ sel.eyebrow }}</div>
+          <div style="font:800 19px/1.08 var(--font-display);text-transform:uppercase;margin-top:6px">{{ sel.name }}</div>
+          <div style="font:500 11.5px var(--font-body);color:var(--ink-fg-2);margin-top:6px">{{ sel.team }} · {{ sel.owner }}</div>
+        </div>
+        <div onClick="{{ closeSel }}" style="font:400 22px/1 var(--font-body);color:var(--ink-fg-3);cursor:pointer;padding:0 2px">×</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink-line)">
+        <sc-for list="{{ sel.stats }}" as="s">
+          <div style="padding:10px;border-right:1px solid var(--ink-line)"><div style="font:600 8.5px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3)">{{ s.k }}</div><div style="font:800 17px var(--font-display);margin-top:4px">{{ s.v }}</div><div style="font:500 9.5px var(--font-body);color:var(--ink-fg-3);margin-top:2px">{{ s.sub }}</div></div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:16px">
+        <div style="flex:1">
+          <div style="font:600 9px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3);margin-bottom:8px">PUNTS PER JORNADA</div>
+          <div style="display:flex;align-items:flex-end;gap:8px;height:78px;border-bottom:1px solid var(--ink-line)">
+            <sc-for list="{{ sel.bars }}" as="b">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end;height:100%"><div style="font:700 10px var(--font-body)">{{ b.v }}</div><div style="width:100%;height:{{ b.h }};background:{{ b.c }}"></div></div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:4px"><sc-for list="{{ sel.bars }}" as="b"><div style="flex:1;text-align:center;font:600 9px var(--font-body);color:var(--ink-fg-3)">{{ b.j }}</div></sc-for></div>
+        </div>
+        <div style="width:140px">
+          <div style="font:600 9px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3);margin-bottom:8px">DESGLOSSAMENT J4</div>
+          <sc-for list="{{ sel.bd }}" as="r">
+            <div style="display:flex;justify-content:space-between;font:500 11px/1.9 var(--font-body);color:var(--ink-fg-2)"><span>{{ r.k }}</span><b style="color:#fff">{{ r.v }}</b></div>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{ sel.hasNote }}"><div style="font:500 11.5px/1.5 var(--font-body);color:var(--as1-gold)">{{ sel.note }}</div></sc-if>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ sel.actions }}" as="a">
+          <button onClick="{{ a.onClick }}" style="min-height:46px;padding:0 14px;background:{{ a.bg }};color:{{ a.color }};border:1px solid {{ a.border }};font:700 11.5px var(--font-body);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;opacity:{{ a.op }}"><span>{{ a.label }}</span><span>{{ a.right }}</span></button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ hasBid }}">
+  <div onClick="{{ closeBid }}" style="position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:11;display:flex;align-items:flex-end">
+    <div onClick="{{ stop }}" style="width:100%;background:#131313;border-top:2px solid var(--as1-gold);padding:20px 18px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+      <div style="font:600 9.5px var(--font-body);letter-spacing:.16em;color:var(--as1-gold)">PUJA SECRETA</div>
+      <div style="font:800 20px/1.1 var(--font-display);text-transform:uppercase">{{ bid.name }}</div>
+      <div style="font:500 12px var(--font-body);color:var(--ink-fg-2)">{{ bid.team }} · preu de mercat {{ bid.price }}</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--ink-line-strong);padding:10px">
+        <button onClick="{{ bidDec }}" style="width:48px;height:48px;background:transparent;border:1px solid var(--ink-line-strong);color:#fff;font-size:20px;cursor:pointer">−</button>
+        <div style="font:800 34px var(--font-display)">{{ bid.amt }}</div>
+        <button onClick="{{ bidInc }}" style="width:48px;height:48px;background:transparent;border:1px solid var(--ink-line-strong);color:#fff;font-size:20px;cursor:pointer">+</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;font:500 11.5px var(--font-body);color:var(--ink-fg-2)"><span>Disponible</span><b style="color:{{ bid.availColor }}">{{ bid.avail }}</b></div>
+      <button onClick="{{ confirmBid }}" style="height:52px;background:var(--as1-gold);color:#0A0A0A;border:0;font:700 13px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Confirmar puja →</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ hasToast }}">
+    <div style="position:absolute;left:16px;right:16px;top:56px;z-index:20;background:#FAF7F1;color:#0A0A0A;padding:12px 14px;font:600 12px/1.45 var(--font-body);border-left:0;box-shadow:0 10px 40px rgba(0,0,0,.4)">{{ toast }}</div>
+  </sc-if>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>El meu equip · llista per línies</div>
+<div style="width:390px;height:844px;border-radius:44px;overflow:hidden;position:relative;background:#0A0A0A;box-shadow:0 20px 60px rgba(0,0,0,.25);border:8px solid #1a1a1a;color:#fff;font-family:var(--font-body)">
+  <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font:600 14px var(--font-body)"><span>{{ clock }}</span><span style="font-size:11px;letter-spacing:.1em;color:var(--ink-fg-2)">5G · 84%</span></div>
+  <div style="padding:8px 18px 14px;background:#0A0A0A url(assets/bg-grain.png) center / cover">
+    <div style="display:flex;align-items:center;gap:10px"><img src="assets/escut.png" alt="" style="width:34px;height:34px"><div style="font:600 9.5px var(--font-body);letter-spacing:.16em;color:var(--as1-gold)">JORNADA 5 · TANCA DISSABTE 09:00</div></div>
+    <div style="font:800 30px/0.95 var(--font-display);text-transform:uppercase;margin-top:14px">{{ teamName }}</div>
+    <div style="display:flex;gap:22px;margin-top:14px">
+      <sc-for list="{{ teamStats }}" as="s"><div><div style="font:600 8.5px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3);text-transform:uppercase">{{ s.k }}</div><div style="font:800 16px var(--font-display);margin-top:3px">{{ s.v }}</div></div></sc-for>
+    </div>
+  </div>
+  <div style="padding:6px 18px 20px;display:flex;flex-direction:column;gap:14px;overflow:hidden;height:600px">
+    <sc-for list="{{ lines }}" as="g" hint-placeholder-count="4">
+      <div>
+        <div style="display:flex;justify-content:space-between;font:600 9.5px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3);padding-bottom:6px;border-bottom:1px solid var(--ink-line)"><span>{{ g.label }}</span><span>PTS · PREU</span></div>
+        <sc-for list="{{ g.items }}" as="p">
+          <div style="display:grid;grid-template-columns:24px 1fr 36px 50px;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--ink-line)">
+            <span style="font:800 11px var(--font-display);color:{{ p.capColor }}">{{ p.mark }}</span>
+            <div style="min-width:0"><div style="font:600 12px var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</div><div style="font:500 9.5px var(--font-body);color:var(--ink-fg-3)">{{ p.team }}</div></div>
+            <span style="text-align:right;font:800 12px var(--font-display)">{{ p.pts }}</span>
+            <span style="text-align:right;font:600 11px var(--font-body);color:var(--as1-gold)">{{ p.price }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>El meu equip · cromos (preparat per a les cares)</div>
+<div style="width:390px;height:844px;border-radius:44px;overflow:hidden;position:relative;background:#0A0A0A;box-shadow:0 20px 60px rgba(0,0,0,.25);border:8px solid #1a1a1a;color:#fff;font-family:var(--font-body)">
+  <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font:600 14px var(--font-body)"><span>{{ clock }}</span><span style="font-size:11px;letter-spacing:.1em;color:var(--ink-fg-2)">5G · 84%</span></div>
+  <div style="padding:6px 16px 12px;display:flex;align-items:flex-end;justify-content:space-between">
+    <div><div style="font:600 9.5px var(--font-body);letter-spacing:.16em;color:var(--ink-fg-3)">L'ONZE · 4-4-2</div><div style="font:800 22px/1 var(--font-display);text-transform:uppercase;margin-top:6px">{{ teamName }}</div></div>
+    <div style="text-align:right"><div style="font:600 8.5px var(--font-body);letter-spacing:.14em;color:var(--ink-fg-3)">PUNTS J4</div><div style="font:800 34px/1 var(--font-display);color:var(--as1-gold)">{{ myJ4 }}</div></div>
+  </div>
+  <div style="padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+    <sc-for list="{{ xiCards }}" as="p" hint-placeholder-count="9">
+      <div style="background:#131313;border:1px solid {{ p.border }};display:flex;flex-direction:column">
+        <div style="position:relative;aspect-ratio:1/1;background:#1C1C1C url(assets/bg-grain.png) center / 400%;display:flex;align-items:flex-end;justify-content:flex-start;padding:6px;box-sizing:border-box">
+          <div style="position:absolute;z-index:1;top:6px;left:6px;font:800 11px var(--font-display);color:var(--ink-fg-2)">{{ p.pos }}</div>
+          <div style="position:absolute;z-index:1;top:6px;right:6px;font:800 18px/1 var(--font-display);color:{{ p.ptsColor }}">{{ p.last }}</div>
+          <div style="position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1/1"><img src="assets/avatar.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block"><img src="assets/escut.png" alt="" style="position:absolute;left:59%;top:77%;width:12%;height:12%;object-fit:contain"></div>
+        </div>
+        <div style="padding:6px 7px 7px"><div style="font:700 10px/1.2 var(--font-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.short }}</div><div style="display:flex;justify-content:space-between;font:600 9px var(--font-body);color:var(--ink-fg-3);margin-top:2px"><span>{{ p.tshort }}</span><span style="color:var(--as1-gold)">{{ p.price }}</span></div></div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Prova: «a <a class="dv-oid" href="#1a">1a</a>, que el camp es pugui canviar a la llista de <a class="dv-oid" href="#1b">1b</a>» · «fes servir els cromos de <a class="dv-oid" href="#1c">1c</a> a l'onboarding» · «afegeix un panell d'administrador per posar les estadístiques»</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;dia&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dimecres&quot;,&quot;diumenge&quot;],&quot;default&quot;:&quot;dimecres&quot;,&quot;tsType&quot;:&quot;'dimecres'|'diumenge'&quot;,&quot;section&quot;:&quot;Simulació&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;onboarding&quot;,&quot;equip&quot;],&quot;default&quot;:&quot;onboarding&quot;,&quot;tsType&quot;:&quot;'onboarding'|'equip'&quot;,&quot;section&quot;:&quot;Simulació&quot;},&quot;maxPerTeam&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:1,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Regles&quot;}}">
+class Component extends DCLogic {
+  constructor(...a) {
+    super(...a);
+    this.D = this.build();
+    const d = this.D;
+    const start = (this.props && this.props.startScreen) === 'equip';
+    this.state = { screen: start ? 'app' : 'onboard', step: 0, join: false, leagueName: 'Penya del Parral·lel', teamName: 'FC Parral·lel', size: 20, code: '', revealed: start ? 15 : 0, tab: 'equip', mesTab: 'intercanvis', mTab: 'lliure', fPos: 'TOTS', fCat: 'TOTS', owner: d.owner, slots: d.slots, reserves: [], cap: d.cap, saldo: 0, bids: {}, sel: null, bidFor: null, bidAmt: 0, offers: d.offers, trades: d.trades, tr: { rival: 1, mine: null, theirs: null, cash: 0 }, toast: null, mktDay: 1, paid: false, openRule: 0 };
+  }
+  componentWillUnmount() { clearInterval(this._deal); clearTimeout(this._t); }
+  build() {
+    let s = 20260927;
+    const r = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+    const pick = a => a[Math.floor(r() * a.length)];
+    const T = [['Prebenjamí S8',8,'S8','Sant Andreu',1,'Dissabte','11:45'],['Benjamí S9 A',9,'S9 A','Barcino',0,'Dissabte','10:15'],['Benjamí S10 A',10,'S10 A','Sant Ignasi',1,'Dissabte','10:30'],['Aleví S11 A',11,'S11 A','Premier BCN',0,'Dissabte','10:30'],['Aleví S11 B',11,'S11 B','Parc',0,'Diumenge','17:00'],['Aleví S12 A',12,'S12 A','At. Hospitalense',0,'Diumenge','10:15'],['Aleví S12 B',12,'S12 B','At. Hospitalense',0,'Dissabte','12:15'],['Infantil S13 A',13,'S13 A','Barça',0,'Dissabte','16:00'],['Infantil S14 A',14,'S14 A','Fund. Hospitalet',0,'Dissabte','17:45'],['Infantil S14 B',14,'S14 B','Barcino',1,'Dissabte','09:00'],['Cadet S15 A',15,'S15 A','Can Buxeres',1,'Dissabte','10:30'],['Cadet S15 B',15,'S15 B','Vila Olímpica',0,'Dissabte','14:15'],['Cadet S16 A',16,'S16 A','Sant Ignasi',1,'Diumenge','10:00'],['Cadet S16 B',16,'S16 B','Sarrià',0,'Diumenge','13:00'],['Juvenil A',18,'JUV A','Badalona',1,'Dissabte','15:30'],['Juvenil B',18,'JUV B','Congrés',0,'Diumenge','18:00'],['Juvenil C',18,'JUV C','Montañesa',0,'Dissabte','15:30'],['Juvenil D',18,'JUV D','At. Hospitalense',0,'Diumenge','14:00'],['Amateur B',20,'AMAT B','Carmelo',1,'Dissabte','20:00'],['Primer Equip',20,'1r EQUIP','Vilafranca',1,'Dissabte','18:00']];
+    const teams = T.map((t, i) => ({ i, name: t[0], age: t[1], short: t[2], rival: t[3], home: t[4], day: t[5], time: t[6], base: t[1] <= 12 ? 6 : 8, res: [0,0,0,0,0].map(() => ({ gf: Math.floor(r() * 5), ga: Math.floor(r() * 4) })) }));
+    const NOMS = ['Pau','Jan','Marc','Nil','Pol','Arnau','Biel','Martí','Àlex','Hugo','Leo','Joel','Eric','Oriol','Adrià','Gerard','Iker','Unai','Roc','Quim','Dani','Sergi','Aleix','Bruno','Mateo','Izan','Lucas','Aitor','Jordi','Xavi','Omar','Youssef','Ibrahim','Kevin','Santi','Guillem','Ferran','Enzo','Nico','Lluc','Ot','Bernat'];
+    const COG = ['Garcia','Martínez','López','Puig','Soler','Vidal','Ferrer','Roca','Serra','Font','Pujol','Casals','Riera','Vila','Mas','Sala','Costa','Navarro','Romero','Torres','Domènech','Bosch','Camps','Rovira','Pons','Castells','Ruiz','Sánchez','Moreno','Giménez','Batlle','Oliver','Prat','Sabaté','Valls','Llorens','Molina','Benítez','Fuster','Marín','El Idrissi','Mendoza'];
+    const GV = { POR: 6, DEF: 6, MIG: 5, DAV: 4 }, CSV = { POR: 4, DEF: 4, MIG: 1, DAV: 0 }, GP = { POR: 0, DEF: .12, MIG: .28, DAV: .45 };
+    const bd = (pos, rs) => {
+      if (r() < .12) return { min: 0, g: 0, a: 0, cs: 0, res: 0, y: 0, coach: 0, pts: 0, pos };
+      const full = r() < .7; let g = 0; if (r() < GP[pos]) { g = 1; if (r() < .25) g = 2; } g = Math.min(g, rs.gf);
+      const a = r() < .2 && rs.gf > g ? 1 : 0; const cs = rs.ga === 0 && full && pos !== 'DAV' ? 1 : 0;
+      const res = rs.gf > rs.ga ? 2 : rs.gf === rs.ga ? 1 : 0; const y = r() < .12 ? 1 : 0; const coach = Math.floor(r() * 4); const min = full ? 2 : 1;
+      return { min, g, a, cs, res, y, coach, pos, pts: min + g * GV[pos] + a * 3 + cs * CSV[pos] + res - y + coach };
+    };
+    const POS = ['POR','POR','DEF','DEF','DEF','DEF','MIG','MIG','MIG','MIG','DAV','DAV','DAV'];
+    const P = []; const used = new Set();
+    teams.forEach(t => POS.forEach(pos => {
+      let n; do { n = pick(NOMS) + ' ' + pick(COG) + ' ' + pick(COG); } while (used.has(n)); used.add(n);
+      const bds = t.res.map(rs => bd(pos, rs));
+      const drift = Math.round((r() * 2.8 - 0.9) * 10) / 10;
+      P.push({ id: P.length, name: n, pos, team: t.i, bds, hist: bds.slice(0, 4).map(b => b.pts), price: Math.max(t.base - 1, t.base + drift), trend: Math.round((r() * 0.8 - 0.3) * 10) / 10 });
+    }));
+    const owner = P.map(() => -1);
+    const ids = P.map(p => p.id).sort(() => r() - .5);
+    const need = { POR: 2, DEF: 5, MIG: 5, DAV: 3 }; const squads = [];
+    for (let m = 0; m < 12; m++) {
+      const cnt = {}; const sq = [];
+      Object.keys(need).forEach(pos => { for (let k = 0; k < need[pos]; k++) {
+        const i = ids.findIndex(id => P[id].pos === pos && owner[id] === -1 && (cnt[P[id].team] || 0) < 3);
+        const id = ids[i]; owner[id] = m; cnt[P[id].team] = (cnt[P[id].team] || 0) + 1; sq.push(id);
+      } });
+      squads.push(sq);
+    }
+    const tot = id => P[id].hist.reduce((a, b) => a + b, 0);
+    const g = pos => squads[0].filter(id => P[id].pos === pos).sort((a, b) => tot(b) - tot(a));
+    const G = { POR: g('POR'), DEF: g('DEF'), MIG: g('MIG'), DAV: g('DAV') };
+    const slots = [];
+    [['POR',1],['DEF',4],['MIG',4],['DAV',2]].forEach(([pos, n]) => { for (let k = 0; k < n; k++) slots.push({ pos, grp: 'xi', id: G[pos][k] }); });
+    [['POR',1],['DEF',4],['MIG',4],['DAV',2]].forEach(([pos, n]) => slots.push({ pos, grp: 'bench', id: G[pos][n] }));
+    const xi = slots.filter(x => x.grp === 'xi').map(x => x.id);
+    const cap = xi.slice().sort((a, b) => tot(b) - tot(a))[0];
+    const M = [['Tu',''],['Laia Puig','Les Tres Xemeneies'],['Jordi Vidal','Montjuïc United'],['Núria Ferrer','Blai Street'],['Oriol Mas','Real Poble Sec'],['Anna Roca','Sortidor FC'],['Pau Casals','Nou de la Rambla'],['Clara Serra','Atlètic Margarit'],['Dani Romero','Tapes i Gols'],['Sergi Font','Paral·lel 70'],['Marta Vila','Quimet Galàctic'],['Albert Pons','Els del Tercer']];
+    const theirDav = squads[1].filter(id => P[id].pos === 'DAV')[0];
+    const offers = [{ id: 1, from: 2, player: G.DEF[1], amt: Math.round((P[G.DEF[1]].price + 0.9) * 10) / 10 }, { id: 2, from: 5, player: G.MIG[2], amt: Math.round((P[G.MIG[2]].price + 0.4) * 10) / 10 }];
+    const trades = [{ id: 1, dir: 'in', from: 1, give: theirDav, want: G.MIG[0], cash: 0.5 }];
+    return { P, teams, owner, slots, cap, M, offers, trades, tot };
+  }
+  fmt(n) { return (Math.round(n * 10) / 10).toFixed(1).replace('.', ',') + 'M'; }
+  toastMsg(m) { this.setState({ toast: m }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: null }), 2600); }
+  mySquad(st) { st = st || this.state; return st.slots.filter(x => x.id != null).map(x => x.id).concat(st.reserves); }
+  teamCount(team, st) { return this.mySquad(st).filter(id => this.D.P[id].team === team).length; }
+  limit() { return this.props.maxPerTeam ?? 3; }
+  isOpen() { return (this.props.dia ?? 'dimecres') !== 'diumenge'; }
+  canAdd(id) {
+    const p = this.D.P[id];
+    if (this.mySquad().length >= 18) return 'Plantilla plena (18). Ven un jugador abans.';
+    if (this.teamCount(p.team) >= this.limit()) return 'Ja tens ' + this.limit() + ' jugadors del ' + this.D.teams[p.team].name + '.';
+    return null;
+  }
+  place(st, id) {
+    const pos = this.D.P[id].pos; const slots = st.slots.map(x => ({ ...x }));
+    const i = slots.findIndex(x => x.id == null && x.pos === pos && x.grp === 'xi');
+    const j = i >= 0 ? i : slots.findIndex(x => x.id == null && x.pos === pos);
+    if (j >= 0) { slots[j].id = id; return { slots, reserves: st.reserves }; }
+    return { slots, reserves: st.reserves.concat(id) };
+  }
+  remove(st, id) { return { slots: st.slots.map(x => x.id === id ? { ...x, id: null } : x), reserves: st.reserves.filter(x => x !== id), cap: st.cap === id ? null : st.cap }; }
+  setOwner(id, m) { const o = this.state.owner.slice(); o[id] = m; return o; }
+  sell(id) {
+    const p = this.D.P[id];
+    this.setState(st => ({ ...this.remove(st, id), owner: this.setOwner(id, -1), saldo: st.saldo + p.price, sel: null }));
+    this.toastMsg(p.name + ' venut per ' + this.fmt(p.price) + '.');
+  }
+  payClause(id) {
+    const p = this.D.P[id]; const c = p.price * 1.5; const err = this.canAdd(id);
+    if (err) return this.toastMsg(err);
+    if (this.state.saldo < c) return this.toastMsg('Saldo insuficient per pagar la clàusula (' + this.fmt(c) + ').');
+    this.setState(st => ({ ...this.place(st, id), owner: this.setOwner(id, 0), saldo: st.saldo - c, sel: null }));
+    this.toastMsg('Clàusula pagada. ' + p.name + ' és teu.');
+  }
+  swap(a, b) {
+    this.setState(st => {
+      const sl = st.slots.map(x => ({ ...x })); let res = st.reserves.slice();
+      const ia = sl.findIndex(x => x.id === a), ib = sl.findIndex(x => x.id === b);
+      if (ia >= 0 && ib >= 0) { sl[ia].id = b; sl[ib].id = a; }
+      else if (ia >= 0) { sl[ia].id = b; res = res.filter(x => x !== b).concat(a); }
+      else if (ib >= 0) { sl[ib].id = a; res = res.filter(x => x !== a).concat(b); }
+      const xi = sl.filter(x => x.grp === 'xi').map(x => x.id);
+      return { slots: sl, reserves: res, cap: xi.includes(st.cap) ? st.cap : null, sel: null };
+    });
+    this.toastMsg('Canvi fet.');
+  }
+  fillSlot(id, idx) {
+    this.setState(st => { const sl = st.slots.map(x => ({ ...x })); const from = sl.findIndex(x => x.id === id); if (from >= 0) sl[from].id = null; sl[idx].id = id; return { slots: sl, reserves: st.reserves.filter(x => x !== id), sel: null }; });
+  }
+  startDeal() {
+    this.setState({ step: 2, revealed: 0 });
+    clearInterval(this._deal);
+    this._deal = setInterval(() => { this.setState(st => { if (st.revealed >= 15) { clearInterval(this._deal); return null; } return { revealed: st.revealed + 1 }; }); }, 140);
+  }
+  pv(id) {
+    const { P, teams, M, tot } = this.D; const p = P[id]; const t = teams[p.team];
+    const parts = p.name.split(' ');
+    const o = this.state.owner[id];
+    return { id, name: p.name, short: parts[0] + ' ' + parts[1], initials: parts[0][0] + parts[1][0], pos: p.pos, team: t.name, tshort: t.short, price: this.fmt(p.price), pts: tot(id), last: p.hist[3], trend: (p.trend >= 0 ? '+' : '−') + this.fmt(Math.abs(p.trend)), trendColor: p.trend >= 0 ? '#6fae6d' : '#d0705f', owner: o === -1 ? 'Lliure' : o === 0 ? 'Teu' : M[o][0], onClick: () => this.setState({ sel: id }) };
+  }
+  renderVals() {
+    const st = this.state, { P, teams, M, tot } = this.D, open = this.isOpen(), dia = this.props.dia ?? 'dimecres';
+    const gold = '#F2C314', line = 'rgba(255,255,255,0.10)', lineS = 'rgba(255,255,255,0.22)', f3 = '#6E6B66';
+    const seg = (items, cur, set) => items.map(([k, l]) => ({ label: l, onClick: () => set(k), color: cur === k ? '#fff' : f3, line: cur === k ? gold : 'transparent' }));
+    const chip = (items, cur, set) => items.map(([k, l]) => ({ label: l, onClick: () => set(k), bg: cur === k ? gold : 'transparent', color: cur === k ? '#0A0A0A' : '#B8B5AE', border: cur === k ? gold : lineS }));
+    const xiIds = st.slots.filter(x => x.grp === 'xi' && x.id != null).map(x => x.id);
+    const squad = this.mySquad();
+    const capOn = xiIds.includes(st.cap);
+    const j4 = xiIds.reduce((a, id) => a + P[id].hist[3] * (id === st.cap ? 2 : 1), 0);
+    const bidSum = Object.values(st.bids).reduce((a, b) => a + b, 0);
+    const value = squad.reduce((a, id) => a + P[id].price, 0);
+    const mgrTot = m => { if (m === 0) return { t: xiIds.reduce((a, id) => a + tot(id), 0) + (capOn ? tot(st.cap) : 0), j: j4 }; const ids = P.filter(p => st.owner[p.id] === m).map(p => p.id).sort((a, b) => tot(b) - tot(a)).slice(0, 11); return { t: ids.reduce((a, id) => a + tot(id), 0) + tot(ids[0] ?? 0), j: ids.reduce((a, id) => a + P[id].hist[3], 0) + (ids[0] != null ? P[ids[0]].hist[3] : 0) }; };
+    const table = M.map((m, i) => ({ i, ...mgrTot(i) })).sort((a, b) => b.t - a.t);
+    const myRank = table.findIndex(x => x.i === 0) + 1;
+    const token = x => { if (x.id == null) return { empty: true, filled: false, pos: x.pos, onClick: () => { if (!open) return this.toastMsg('El mercat és tancat fins dilluns.'); this.setState({ tab: 'mercat', mTab: 'lliure', fPos: x.pos }); } }; const v = this.pv(x.id); const cap = x.id === st.cap && x.grp === 'xi'; return { ...v, filled: true, empty: false, isCap: cap, border: cap ? gold : lineS, sub: v.last * (cap ? 2 : 1) + ' pts' }; };
+    const rows = ['DAV', 'MIG', 'DEF', 'POR'].map(pos => ({ key: pos, tokens: st.slots.filter(x => x.grp === 'xi' && x.pos === pos).map(token) }));
+    const bench = st.slots.filter(x => x.grp === 'bench').map(token);
+    // player sheet
+    let sel = null;
+    if (st.sel != null) {
+      const id = st.sel, p = P[id], v = this.pv(id), o = st.owner[id], t = teams[p.team];
+      const inXI = xiIds.includes(id), mine = o === 0;
+      const b4 = p.bds[3]; const bdR = [['Minuts', b4.min]];
+      if (b4.g) bdR.push(['Gols ×' + b4.g, b4.g * ({ POR: 6, DEF: 6, MIG: 5, DAV: 4 })[p.pos]]);
+      if (b4.a) bdR.push(['Assistència', 3]);
+      if (b4.cs) bdR.push(['Porteria a zero', ({ POR: 4, DEF: 4, MIG: 1, DAV: 0 })[p.pos]]);
+      if (b4.res) bdR.push([b4.res === 2 ? 'Victòria' : 'Empat', b4.res]);
+      if (b4.y) bdR.push(['Groga', -1]);
+      bdR.push(['Entrenador', b4.coach]);
+      const bars = p.hist.map((h, i) => ({ v: h, j: 'J' + (i + 1), h: Math.max(2, Math.min(56, h * 3.5)) + 'px', c: i === 3 ? gold : '#3A3935' }));
+      const A = []; const btn = (label, onClick, kind, right, dis) => A.push({ label, onClick: dis ? () => this.toastMsg(dis) : onClick, right: right || '', bg: kind === 'gold' ? gold : 'transparent', color: kind === 'gold' ? '#0A0A0A' : '#fff', border: kind === 'gold' ? gold : lineS, op: dis ? 0.45 : 1 });
+      let note = '';
+      if (mine) {
+        const lockMsg = open ? null : 'Alineació bloquejada durant la jornada.';
+        if (inXI && st.cap !== id) btn('Fer capità', () => { this.setState({ cap: id, sel: null }); this.toastMsg(p.name + ' és el teu capità.'); }, 'ghost', '×2', lockMsg);
+        const cands = squad.filter(c => c !== id && P[c].pos === p.pos && xiIds.includes(c) !== inXI);
+        cands.forEach(c => btn((inXI ? 'Entra ' : 'Al lloc de ') + this.pv(c).short, () => this.swap(id, c), 'ghost', '⇄', lockMsg));
+        if (!inXI) { const e = st.slots.findIndex(x => x.grp === 'xi' && x.pos === p.pos && x.id == null); if (e >= 0) btn("Posar a l'onze", () => this.fillSlot(id, e), 'ghost', '↑', lockMsg); }
+        btn('Vendre al mercat', () => this.sell(id), 'gold', '+' + this.fmt(p.price), open ? null : 'El mercat és tancat fins dilluns.');
+        note = 'Clàusula de rescissió: ' + this.fmt(p.price * 1.5) + '. Qualsevol rival la pot pagar amb el mercat obert.';
+      } else if (o === -1) {
+        const err = this.canAdd(id);
+        btn(st.bids[id] ? 'Modificar puja' : 'Fer una puja', () => this.setState({ sel: null, bidFor: id, bidAmt: st.bids[id] || p.price }), 'gold', 'des de ' + v.price, !open ? 'El mercat és tancat fins dilluns.' : err);
+        if (err) note = err;
+      } else {
+        const err = this.canAdd(id);
+        btn('Pagar clàusula', () => this.payClause(id), 'gold', this.fmt(p.price * 1.5), !open ? 'El mercat és tancat fins dilluns.' : err);
+        btn('Proposar intercanvi', () => this.setState({ sel: null, tab: 'mes', mesTab: 'intercanvis', tr: { ...st.tr, rival: o, theirs: id } }), 'ghost', '⇄');
+        if (err) note = err;
+      }
+      sel = { ...v, eyebrow: p.pos + ' · ' + t.name.toUpperCase(), owner: v.owner, stats: [{ k: 'PREU', v: v.price, sub: v.trend + ' aquesta setmana' }, { k: 'PUNTS', v: v.pts, sub: (v.pts / 4).toFixed(1).replace('.', ',') + ' per jornada' }, { k: 'INICIAL', v: this.fmt(t.base), sub: t.base === 6 ? 'Fins al S12' : 'Des del S13' }], bars, bd: bdR.map(([k, n]) => ({ k, v: (n > 0 ? '+' : '') + n })), actions: A, hasNote: !!note, note };
+    }
+    // market
+    const hash = id => { let h = (id + 1) * 2654435761 + st.mktDay * 40503; h = (h ^ (h >>> 13)) * 1274126177; return ((h ^ (h >>> 16)) >>> 0); };
+    const listed = new Set(P.filter(p => st.owner[p.id] === -1).sort((a, b) => hash(a.id) - hash(b.id)).slice(0, 16).map(p => p.id));
+    const DAYS = ['dilluns', 'dimarts', 'dimecres', 'dijous', 'divendres'];
+    const mktDayName = DAYS[(st.mktDay + 1) % 5];
+    const free = P.filter(p => listed.has(p.id) && (st.fPos === 'TOTS' || p.pos === st.fPos) && (st.fCat === 'TOTS' || (st.fCat === 'BASE' ? teams[p.team].age <= 12 : teams[p.team].age > 12))).sort((a, b) => tot(b.id) - tot(a.id));
+    const freeRows = free.slice(0, 30).map(p => { const v = this.pv(p.id); const b = st.bids[p.id]; return { ...v, btn: b ? this.fmt(b) : open ? 'PUJAR' : 'TANCAT', btnBg: b ? 'transparent' : open ? gold : 'transparent', btnColor: b ? gold : open ? '#0A0A0A' : f3, btnBorder: b ? gold : open ? gold : lineS, onBid: () => { if (!open) return this.toastMsg('El mercat és tancat fins dilluns.'); this.setState({ bidFor: p.id, bidAmt: b || p.price }); } }; });
+    const bidRows = Object.keys(st.bids).map(Number).map(id => { const v = this.pv(id); return { ...v, amt: this.fmt(st.bids[id]), rivals: (id % 3) + 1 + ' pujes més', onClick: () => this.setState({ bidFor: id, bidAmt: st.bids[id] }) }; });
+    const offerRows = st.offers.filter(o => st.owner[o.player] === 0).map(o => ({ from: M[o.from][0], amt: this.fmt(o.amt), player: P[o.player].name, price: this.fmt(P[o.player].price), onAccept: () => { if (!open) return this.toastMsg('El mercat és tancat fins dilluns.'); this.setState(s2 => ({ ...this.remove(s2, o.player), owner: this.setOwner(o.player, o.from), saldo: s2.saldo + o.amt, offers: s2.offers.filter(x => x.id !== o.id) })); this.toastMsg('Venut a ' + M[o.from][0] + ' per ' + this.fmt(o.amt) + '.'); }, onReject: () => this.setState(s2 => ({ offers: s2.offers.filter(x => x.id !== o.id) })) }));
+    let bid = null;
+    if (st.bidFor != null) { const v = this.pv(st.bidFor); const avail = st.saldo - bidSum + (st.bids[st.bidFor] || 0); bid = { ...v, amt: this.fmt(st.bidAmt), avail: this.fmt(avail), availColor: avail >= st.bidAmt ? '#fff' : '#d0705f', _avail: avail }; }
+    // jornada
+    const liveStat = t => { if (dia !== 'diumenge') return { k: 'next', label: t.day.toUpperCase() + ' ' + t.time }; if (t.day === 'Dissabte' || t.time < '13:00') return { k: 'final', label: 'FINAL' }; if (t.time === '13:00') return { k: 'live', label: "EN JOC 52'" }; return { k: 'next', label: 'AVUI ' + t.time }; };
+    const order = { live: 0, final: 1, next: 2 };
+    const matches = teams.map(t => { const ls = liveStat(t); const rs = t.res[4]; const mineIds = squad.filter(id => P[id].team === t.i);
+      return { team: t.name, vs: (t.home ? 'vs ' : 'a ') + t.rival + (t.home ? ' · casa' : ' · fora'), score: ls.k === 'next' ? '' : rs.gf + '–' + rs.ga, status: ls.label, statusColor: ls.k === 'live' ? gold : ls.k === 'final' ? '#B8B5AE' : f3, _o: order[ls.k] * 100 + (mineIds.length ? 0 : 50) + t.i, hasMine: mineIds.length > 0,
+        mine: mineIds.map(id => ({ short: this.pv(id).short + (xiIds.includes(id) ? '' : ' (S)'), pts: ls.k === 'next' ? '–' : String(P[id].bds[4].pts * (id === st.cap && capOn ? 2 : 1)) })) }; }).sort((a, b) => a._o - b._o);
+    const liveTotal = dia === 'diumenge' ? xiIds.reduce((a, id) => { const k = liveStat(teams[P[id].team]).k; return a + (k === 'next' ? 0 : P[id].bds[4].pts * (id === st.cap ? 2 : 1)); }, 0) : j4;
+    const pendingXI = xiIds.filter(id => liveStat(teams[P[id].team]).k === 'next').length;
+    // standings
+    const standings = table.map((x, i) => ({ pos: i + 1, team: x.i === 0 ? st.teamName : M[x.i][1], mgr: x.i === 0 ? 'Tu' : M[x.i][0], j: x.j, total: x.t, bg: x.i === 0 ? '#1C1C1C' : '#131313', border: x.i === 0 ? gold : line, posColor: i < 3 ? gold : '#fff', onClick: () => { if (x.i === 0) return this.setState({ tab: 'equip' }); this.setState({ tab: 'mes', mesTab: 'intercanvis', tr: { rival: x.i, mine: null, theirs: null, cash: 0 } }); } }));
+    // trades
+    const tradeRows = st.trades.map(t => { const inc = t.dir === 'in'; const valid = inc ? st.owner[t.give] === t.from && st.owner[t.want] === 0 : true;
+      return { kind: inc ? 'PROPOSTA DE ' + M[t.from][0].toUpperCase() : 'ENVIADA A ' + M[t.to][0].toUpperCase() + ' · PENDENT', give: P[inc ? t.want : t.mine].name, get: P[inc ? t.give : t.theirs].name, note: inc ? (t.cash ? M[t.from][0] + ' hi afegeix ' + this.fmt(t.cash) + '.' : 'Sense diners.') : (t.cash ? 'Hi afegeixes ' + this.fmt(t.cash) + '.' : 'Sense diners.') + ' Caduca divendres 23:59.', incoming: inc && valid, border: inc ? gold : line,
+        onAccept: () => { if (!open) return this.toastMsg('El mercat és tancat fins dilluns.'); this.setState(s2 => { const sl = s2.slots.map(x => x.id === t.want ? { ...x, id: t.give } : x); const res = s2.reserves.map(x => x === t.want ? t.give : x); const ow = s2.owner.slice(); ow[t.want] = t.from; ow[t.give] = 0; return { slots: sl, reserves: res, owner: ow, saldo: s2.saldo + t.cash, cap: s2.cap === t.want ? null : s2.cap, trades: s2.trades.filter(x => x !== t) }; }); this.toastMsg('Intercanvi acceptat.'); },
+        onReject: () => this.setState(s2 => ({ trades: s2.trades.filter(x => x !== t) })) }; });
+    const rivalChips = chip(M.slice(1).map((m, i) => [i + 1, m[0]]), st.tr.rival, k => this.setState({ tr: { ...st.tr, rival: k, theirs: null } }));
+    const pick = (id, cur, key) => ({ ...this.pv(id), border: cur === id ? gold : line, bg: cur === id ? '#1C1C1C' : '#131313', onClick: () => this.setState({ tr: { ...st.tr, [key]: id } }) });
+    const trMine = squad.slice().sort((a, b) => 'PORDEFMIGDAV'.indexOf(P[a].pos) - 'PORDEFMIGDAV'.indexOf(P[b].pos)).map(id => pick(id, st.tr.mine, 'mine'));
+    const trTheirs = P.filter(p => st.owner[p.id] === st.tr.rival).sort((a, b) => 'PORDEFMIGDAV'.indexOf(a.pos) - 'PORDEFMIGDAV'.indexOf(b.pos)).map(p => pick(p.id, st.tr.theirs, 'theirs'));
+    const trReady = st.tr.mine != null && st.tr.theirs != null;
+    // variants
+    const lines = [['POR', 'PORTERS'], ['DEF', 'DEFENSES'], ['MIG', 'MIGCAMPISTES'], ['DAV', 'DAVANTERS']].map(([pos, label]) => ({ label, items: st.slots.filter(x => x.pos === pos && x.id != null).map(x => { const v = this.pv(x.id); const cap = x.id === st.cap && x.grp === 'xi'; return { ...v, team: v.team + (x.grp === 'bench' ? ' · suplent' : ''), mark: cap ? 'C' : x.grp === 'bench' ? 'S' : '', capColor: cap ? gold : f3 }; }) }));
+    const xiCards = ['DAV', 'MIG', 'DEF', 'POR'].flatMap(pos => st.slots.filter(x => x.grp === 'xi' && x.pos === pos && x.id != null)).reverse().map(x => { const v = this.pv(x.id); const cap = x.id === st.cap; return { ...v, border: cap ? gold : line, ptsColor: v.last >= 8 ? gold : '#fff', last: v.last * (cap ? 2 : 1) }; });
+    const dealtIds = this.mySquad().slice(0, st.revealed);
+    const tabTitles = { equip: st.teamName, mercat: 'Mercat', jornada: 'Jornada 5', lliga: st.leagueName, mes: { intercanvis: 'Intercanvis', perfil: 'Perfil' }[st.mesTab], normes: 'Normes' };
+    const tabSubs = { equip: 'Jornada 5 · ' + (open ? 'tanca dissabte 09:00' : 'en joc'), mercat: 'Tots els equips del club', jornada: dia === 'diumenge' ? 'En directe' : 'Dissabte i diumenge', lliga: '12 de 50 mànagers', mes: 'CE Apa Poble Sec', normes: 'Reglament i instruccions' };
+    const pendingIn = st.trades.filter(t => t.dir === 'in' && st.owner[t.give] === t.from && st.owner[t.want] === 0).length;
+    const offersN = offerRows.length;
+    const navDef = [['equip', 'EQUIP', 0], ['mercat', 'MERCAT', offersN], ['jornada', 'JORNADA', 0], ['lliga', 'LLIGA', 0], ['mes', 'MÉS', pendingIn], ['normes', 'NORMES', 0]];
+    const L = this.limit();
+    const ruleRows = [['Jugar el partit (menys de mig partit)', '+1'], ['Jugar més de mig partit', '+2'], ['Gol de porter o defensa', '+6'], ['Gol de migcampista', '+5'], ['Gol de davanter', '+4'], ['Assistència', '+3'], ['Porteria a zero · POR i DEF (més de mig partit)', '+4'], ['Porteria a zero · MIG', '+1'], ["Victòria de l'equip", '+2'], ["Empat de l'equip", '+1'], ["Valoració de l'entrenador", '0 a +3'], ['Targeta groga', '−1'], ['Targeta vermella', '−3'], ['Capità', '×2']].map(([k, v]) => ({ k, v, color: v[0] === '−' ? '#d0705f' : v === '×2' ? gold : '#fff' }));
+    const moneyRows = [['Saldo inicial', '0,0M'], ['Per cada punt de la jornada', '+0,1M'], ['1r de la jornada a la teva lliga', '+3,0M'], ['2n de la jornada', '+2,0M'], ['3r de la jornada', '+1,0M'], ['Vendre al mercat', 'preu actual'], ['Clàusula de rescissió', '1,5 × preu']].map(([k, v]) => ({ k, v, color: v[0] === '+' ? gold : '#fff' }));
+    const priceRows = [['Equips del S8 al S12', '6,0M'], ['Equips del S13 al Primer Equip', '8,0M'], ['Preu mínim', 'inicial − 1,0M']].map(([k, v]) => ({ k, v, color: '#fff' }));
+    const NS = [
+      ['Com funciona', ["Ets el mànager d'un equip fantasy format per jugadors reals del CE Apa Poble Sec, de qualsevol dels 20 equips del club: del Prebenjamí S8 al Primer Equip.", 'Cada cap de setmana els jugadors del teu onze sumen punts segons el que fan al seu partit real.', 'Amb els punts puges a la classificació de la teva lliga i guanyes diners per fitxar.', 'Guanya la lliga qui acaba la temporada amb més punts.']],
+      ['Lligues i amics', ['Qualsevol persona pot crear una lliga i convidar-hi amics amb un codi (per exemple, APA-7Q3K).', 'Cada lliga admet fins a 50 mànagers. Qui la crea en tria el màxim: 10, 20, 30 o 50.', 'Pots jugar a diverses lligues alhora. A cada lliga tens un equip, uns diners i un mercat diferents.', "Un mateix jugador només pot ser d'un mànager dins de cada lliga."]],
+      ['La plantilla', ["En entrar a una lliga reps 15 jugadors a l'atzar: 2 porters, 5 defenses, 5 migcampistes i 3 davanters.", 'Amb ells formes un onze titular i 4 suplents: 1 porter, 1 defensa, 1 migcampista i 1 davanter.', 'Pots tenir fins a 18 jugadors a la plantilla. Els que no són ni titulars ni suplents queden a la reserva.', 'Pots tenir com a màxim ' + L + " jugadors del mateix equip real. El límit compta en el repartiment, els fitxatges, les clàusules i els intercanvis."]],
+      ["L'alineació", ["L'onze es juga en 4-4-2: 1 porter, 4 defenses, 4 migcampistes i 2 davanters.", 'Toca un jugador per treure’l de l’onze o fer entrar un suplent de la mateixa posició.', "Les alineacions es bloquegen quan comença el primer partit del cap de setmana (dissabte a les 09:00) i es tornen a obrir dilluns a les 00:00.", "Només puntuen els 11 titulars. Els suplents i la reserva no sumen punts.", 'Si deixes una posició buida a l’onze, aquell lloc suma 0 punts.']],
+      ['El capità', ["Tria un capità entre els teus titulars: els seus punts compten doble.", 'Si el capità surt de l’onze, et quedes sense capità fins que en triïs un altre.', 'Si el capità no juga, no hi ha cap vicecapità que el substitueixi.']],
+      ['Puntuació', ["Un administrador del club introdueix les estadístiques de cada partit i les publica. Llavors els punts apareixen a totes les lligues.", "Futbol 7 i futbol 11 puntuen igual. Mig partit vol dir la meitat de la durada de cada categoria.", "La porteria a zero només compta si el jugador ha jugat més de mig partit."], ruleRows],
+      ['Preus dels jugadors', ["Tots els jugadors comencen amb un preu segons la categoria del seu equip.", 'Quan es tanca la jornada el preu puja o baixa segons els punts que ha fet el jugador i quants mànagers el volen.', 'Un preu mai baixa més d’1,0M per sota del preu inicial.'], priceRows],
+      ['Diners', ['Comences amb 0M. Per fitxar, primer has de guanyar diners.', "Quan l'administrador tanca la jornada cobres 0,1M per cada punt que ha fet el teu equip, capità inclòs.", 'Els tres mànagers amb més punts de la jornada a cada lliga cobren un premi extra.', 'També guanyes diners venent jugadors al mercat o acceptant ofertes d’altres mànagers.', 'El saldo mai pot ser negatiu. Els diners de les pujades pendents queden reservats.'], moneyRows],
+      ['El mercat', ['El mercat és obert de dilluns a les 00:00 fins a divendres a les 23:59. El cap de setmana és tancat.', "Cada dia a les 00:00 surten 16 jugadors lliures triats a l'atzar. Els que ningú fitxa aquell dia tornen a la borsa i poden sortir un altre dia.", 'Els jugadors que es venen o es donen de baixa passen a la borsa de lliures.', 'Només pots fitxar els jugadors que surten al mercat del dia.']],
+      ['Pujades', ['Per fitxar un jugador lliure fas una pujada secreta, com a mínim del seu preu.', 'Ningú veu quant has pujat. Només veus quantes pujades més hi ha.', 'Les pujades es resolen quan tanca el mercat, divendres a les 23:59. Guanya la més alta.', 'Si hi ha empat, guanya qui ha pujat primer.', 'Fins que tanca el mercat pots canviar o retirar la pujada.']],
+      ['Vendes, ofertes i clàusules', ['Vendre al mercat és immediat: cobres el preu actual i el jugador passa a la borsa de lliures.', "Un altre mànager et pot fer una oferta per un jugador teu. Tu decideixes si l'acceptes o la rebutges.", 'Cada jugador té una clàusula de rescissió d’1,5 vegades el seu preu. Si un rival la paga, el jugador passa al seu equip a l’instant i tu en cobres l’import.', 'Les clàusules només es poden pagar amb el mercat obert.']],
+      ['Intercanvis 1×1', ['Pots proposar a un altre mànager canviar un jugador teu per un de seu.', 'Pots afegir-hi diners, a favor teu o seu.', "L'altre mànager l'accepta o el rebutja. Si no respon, la proposta caduca divendres a les 23:59.", 'Els intercanvis han de complir el límit de ' + L + ' jugadors per equip real i el de 18 jugadors per plantilla.']],
+      ['Jornades i partits', ['Una jornada és un cap de setmana de partits de tots els equips del club.', "Si un partit s'ajorna, els jugadors d'aquell equip no puntuen aquella jornada.", 'Si un equip descansa, els seus jugadors no puntuen.', "L'administrador pot corregir una puntuació ja publicada. Els punts i els diners s'actualitzen a totes les lligues."]],
+      ['Joc net', ['Molts jugadors són menors. Fes-ne servir el nom i la imatge només dins de l’app.', 'Les fotos dels jugadors les puja el club amb autorització de les famílies.', 'Fora comentaris sobre els jugadors. És un joc per als amics i per al club.']]
+    ];
+    const normes = NS.map(([title, paras, rows], i) => ({ n: String(i + 1).padStart(2, '0'), title, paras, rows: rows || [], hasRows: !!rows, open: st.openRule === i, sign: st.openRule === i ? '−' : '+', onClick: () => this.setState({ openRule: st.openRule === i ? null : i }) }));
+    return {
+      clock: dia === 'diumenge' ? '13:52' : '19:08',
+      isOnboard: st.screen === 'onboard', isApp: st.screen === 'app',
+      step0: st.step === 0, step1: st.step === 1, step2: st.step === 2, join: st.join, notJoin: !st.join,
+      step1Title: st.join ? 'Uneix-te a una lliga' : 'Crea la teva lliga',
+      goCreate: () => this.setState({ step: 1, join: false }), goJoin: () => this.setState({ step: 1, join: true }), goBack: () => this.setState({ step: 0 }),
+      leagueName: st.leagueName, teamName: st.teamName, code: st.code,
+      onLeague: e => this.setState({ leagueName: e.target.value }), onTeam: e => this.setState({ teamName: e.target.value }), onCode: e => this.setState({ code: e.target.value }),
+      sizeOpts: [10, 20, 30, 50].map(n => ({ label: String(n), onClick: () => this.setState({ size: n }), bg: st.size === n ? '#F2C314' : 'transparent', color: st.size === n ? '#0A0A0A' : '#fff', border: st.size === n ? '#F2C314' : lineS })),
+      startDeal: () => this.startDeal(),
+      dealt: dealtIds.map(id => this.pv(id)), dealDone: st.revealed >= 15, dealEyebrow: st.revealed >= 15 ? 'REPARTIMENT FET · 15 DE 15' : 'REPARTINT · ' + st.revealed + ' DE 15',
+      squadValue: this.fmt(value), enterApp: () => this.setState({ screen: 'app', tab: 'equip' }),
+      restart: () => this.setState({ screen: 'onboard', step: 0 }),
+      headTitle: tabTitles[st.tab], headSub: tabSubs[st.tab], saldoLabel: this.fmt(st.saldo),
+      tabEquip: st.tab === 'equip', tabMercat: st.tab === 'mercat', tabJornada: st.tab === 'jornada', tabLliga: st.tab === 'lliga', tabMes: st.tab === 'mes', tabNormes: st.tab === 'normes', normes,
+      teamStats: [{ k: 'Punts J4', v: j4 }, { k: 'Total', v: mgrTot(0).t }, { k: 'Posició', v: myRank + 'è' }, { k: 'Valor', v: this.fmt(value) }],
+      locked: !open, rows, bench,
+      hasReserves: st.reserves.length > 0, reservesLabel: 'RESERVA · ' + squad.length + ' DE 18', reserveRows: st.reserves.map(id => this.pv(id)),
+      mktState: open ? 'Mercat obert' : 'Mercat tancat', mktWhen: open ? 'Tanca divendres 23:59' : 'Obre dilluns 00:00', mktBorder: open ? gold : lineS, mktColor: open ? gold : '#B8B5AE',
+      mTabs: seg([['lliure', 'Lliures'], ['subhastes', 'Pujes ' + (bidRows.length || '')], ['ofertes', 'Ofertes ' + (offersN || '')]], st.mTab, k => this.setState({ mTab: k })),
+      mLliure: st.mTab === 'lliure', mSubh: st.mTab === 'subhastes', mOfer: st.mTab === 'ofertes',
+      posChips: chip([['TOTS', 'TOTS'], ['POR', 'POR'], ['DEF', 'DEF'], ['MIG', 'MIG'], ['DAV', 'DAV']], st.fPos, k => this.setState({ fPos: k })),
+      catChips: chip([['TOTS', 'TOT EL CLUB'], ['BASE', 'FINS AL S12'], ['GRANS', 'S13 I MÉS']], st.fCat, k => this.setState({ fCat: k })),
+      freeCount: open ? 'Mercat de ' + mktDayName + ': 16 jugadors lliures triats a l’atzar' + (free.length < 16 ? ' · ' + free.length + ' amb aquest filtre' : '') + '. Cada dia a les 00:00 en surten de nous.' : 'Aquests són els jugadors de divendres. Dilluns a les 00:00 en surten de nous.', freeRows,
+      nextDay: () => { if (!open) return this.toastMsg('El mercat és tancat fins dilluns.'); this.setState(s2 => ({ mktDay: s2.mktDay + 1 })); this.toastMsg('Nou dia: 16 jugadors nous al mercat.'); },
+      payCard: dia === 'diumenge' ? { t: 'Premis de la J5', a: 'Portes ' + liveTotal + ' punts: ' + this.fmt(liveTotal * 0.1) + ' fins ara.', b: 'Cobraràs quan l’administrador tanqui la jornada, amb 3M, 2M o 1M més si acabes entre els tres primers.', btn: '' } : (() => { const jr = table.slice().sort((a, b) => b.j - a.j).findIndex(x => x.i === 0) + 1; const bonus = jr === 1 ? 3 : jr === 2 ? 2 : jr === 3 ? 1 : 0; const tot = j4 * 0.1 + bonus; return { t: 'Premis de la J4', a: j4 + ' punts × 0,1M = ' + this.fmt(j4 * 0.1) + (bonus ? ' · ' + jr + 'è de la jornada: +' + this.fmt(bonus) : ' · ' + jr + 'è de la jornada, sense premi de podi'), b: st.paid ? 'Cobrat. Total: ' + this.fmt(tot) + '.' : 'Total a cobrar: ' + this.fmt(tot) + '.', btn: st.paid ? '' : 'Cobrar ' + this.fmt(tot) + ' →', amt: tot }; })(),
+      collect: () => { if (st.paid || dia === 'diumenge') return; const jr = table.slice().sort((a, b) => b.j - a.j).findIndex(x => x.i === 0) + 1; const tot = j4 * 0.1 + (jr === 1 ? 3 : jr === 2 ? 2 : jr === 3 ? 1 : 0); this.setState(s2 => ({ saldo: s2.saldo + tot, paid: true })); this.toastMsg('Has cobrat ' + this.fmt(tot) + ' de la J4.'); },
+      bidRows, noBids: bidRows.length === 0, hasBids: bidRows.length > 0,
+      resolveBids: () => { let won = 0, lost = 0, s2 = { ...this.state }; let ow = s2.owner.slice(); Object.keys(s2.bids).map(Number).forEach(id => { if (id % 4 === 0) { lost++; return; } const pl = this.place(s2, id); s2 = { ...s2, ...pl }; ow[id] = 0; s2.saldo -= s2.bids[id]; won++; }); this.setState({ slots: s2.slots, reserves: s2.reserves, owner: ow, saldo: s2.saldo, bids: {} }); this.toastMsg('Mercat tancat: ' + won + ' guanyades, ' + lost + ' perdudes.'); },
+      offerRows, noOffers: offersN === 0,
+      jEyebrow: dia === 'diumenge' ? 'JORNADA 5 · EN DIRECTE' : 'JORNADA 4 · FINAL', jBig: liveTotal, jBigSub: dia === 'diumenge' ? 'punts fins ara · ' + pendingXI + ' jugadors per jugar' : 'punts a la J4 · ' + myRank + 'è a la general',
+      jSide1: dia === 'diumenge' ? 'Capità ×2' : 'Propera: J5', jSide2: dia === 'diumenge' ? 'Actualitza l’admin' : 'Dissabte 09:00',
+      jListTitle: dia === 'diumenge' ? 'PARTITS DEL CAP DE SETMANA' : 'JORNADA 5 · PARTITS', matches,
+      standings, copyCode: () => this.toastMsg('Codi APA-7Q3K copiat. Comparteix-lo amb els amics.'),
+      mesTabs: seg([['intercanvis', 'Intercanvis'], ['perfil', 'Perfil']], st.mesTab, k => this.setState({ mesTab: k })),
+      mesTr: st.mesTab === 'intercanvis', mesPerfil: st.mesTab === 'perfil', mesPunts: st.mesTab === 'punts',
+      tradeRows, rivalChips, trMine, trTheirs, trCash: (st.tr.cash >= 0 ? '+' : '−') + this.fmt(Math.abs(st.tr.cash)),
+      trCashInc: () => this.setState({ tr: { ...st.tr, cash: Math.round((st.tr.cash + 0.5) * 10) / 10 } }), trCashDec: () => this.setState({ tr: { ...st.tr, cash: Math.round((st.tr.cash - 0.5) * 10) / 10 } }),
+      trBtnBg: trReady ? gold : '#3A3935',
+      sendTrade: () => { if (!trReady) return this.toastMsg('Tria un jugador teu i un del rival.'); if (!open) return this.toastMsg('El mercat és tancat fins dilluns.'); this.setState(s2 => ({ trades: s2.trades.concat({ id: Date.now(), dir: 'out', to: s2.tr.rival, mine: s2.tr.mine, theirs: s2.tr.theirs, cash: s2.tr.cash }), tr: { ...s2.tr, mine: null, theirs: null, cash: 0 } })); this.toastMsg('Proposta enviada a ' + M[st.tr.rival][0] + '.'); },
+      myLeagues: [{ name: st.leagueName, meta: '12 mànagers · codi APA-7Q3K', pos: myRank + 'è' }, { name: 'Pares del S12 A', meta: '8 mànagers · codi APA-2M9D', pos: '2n' }],
+      rules: [['Jugar el partit', '+1'], ['Jugar més de mig partit', '+2'], ['Gol de porter o defensa', '+6'], ['Gol de migcampista', '+5'], ['Gol de davanter', '+4'], ['Assistència', '+3'], ['Porteria a zero (POR, DEF)', '+4'], ['Porteria a zero (MIG)', '+1'], ['Victòria / empat', '+2 / +1'], ["Valoració de l'entrenador", '0 a +3'], ['Targeta groga', '−1'], ['Targeta vermella', '−3'], ['Capità', '×2'], ['Diners per punt de la jornada', '+0,1M'], ['1r / 2n / 3r de la jornada', '+3M / +2M / +1M']].map(([k, v]) => ({ k, v, color: v[0] === '−' ? '#d0705f' : v === '×2' ? gold : '#fff' })),
+      nav: navDef.map(([k, l, b]) => ({ label: l, onClick: () => this.setState({ tab: k }), color: st.tab === k ? '#fff' : f3, line: st.tab === k ? gold : 'transparent', badge: b > 0, badgeN: String(b) })),
+      hasSel: !!sel, sel: sel || {}, closeSel: () => this.setState({ sel: null }), stop: e => e.stopPropagation(),
+      hasBid: !!bid, bid: bid || {}, closeBid: () => this.setState({ bidFor: null }),
+      bidInc: () => this.setState(s2 => ({ bidAmt: Math.round((s2.bidAmt + 0.1) * 10) / 10 })),
+      bidDec: () => this.setState(s2 => ({ bidAmt: Math.max(P[s2.bidFor].price, Math.round((s2.bidAmt - 0.1) * 10) / 10) })),
+      confirmBid: () => { const id = st.bidFor; const err = st.bids[id] ? null : this.canAdd(id); if (err) return this.toastMsg(err); if (bid._avail < st.bidAmt) return this.toastMsg('Saldo insuficient. Ven un jugador o accepta una oferta.'); this.setState(s2 => ({ bids: { ...s2.bids, [id]: s2.bidAmt }, bidFor: null })); this.toastMsg('Puja de ' + this.fmt(st.bidAmt) + ' registrada.'); },
+      hasToast: !!st.toast, toast: st.toast,
+      lines, xiCards, myJ4: j4
+    };
+  }
+}
+</script>
+</body>
+</html>
